@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.pie-de-pagina{
+    width: 100%;
+    background-color: #0a141d;
+}
+.pie-de-pagina .case-one{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+    padding: 45px 0px;
+}
+.pie-de-pagina .case-one .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pie-de-pagina .case-one .box figure img{
+    width: 250px;
+}
+.pie-de-pagina .case-one .box h2{
+    color: aliceblue;
+    margin-bottom: 25px;
+}
+.pie-de-pagina .case-one .box p{
+    color: antiquewhite;
+    margin-bottom: 10px;
+}
+.pie-de-pagina .case-one .box .redes a{
+    display: inline-block;
+    text-decoration: none;
+    width: 30px;
+    height: 30px;
+    line-height: 45px;
+    color: blanchedalmond;
+    margin-right: 10px;
+    transition: all 300ms ease;
+}
+.pie-de-pagina .case-one .box .redes a:hover{
+    color: red;
+}
+.pie-de-pagina .case-two{
+    padding: 15px 10px;
+    text-align: center;
+    
+}
+.pie-de-pagina .case-two small{
+    color: blanchedalmond;
+    justify-content: center;
+}
