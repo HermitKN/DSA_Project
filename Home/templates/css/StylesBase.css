@@ -1,12 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,500;1,400&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
+    font-family: 'Fira Sans', sans-serif;
 }
+body{
+    background-color: blanchedalmond;
+}
+
 /*Esto es el Header*/
 
+.h-de-pagina{
+    width: 100%;
+    background-color: #0a141d;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 85px;
+    padding: 10px 10%;
+}
+
+.h-de-pagina .logo figure{
+    width: 100%;
+    height: 100%;
+}
+
+.h-de-pagina .logo figure img{
+    width: 150px;
+    transition: all 0.3s;
+}
+
+.h-de-pagina .logo figure img:hover{
+    transform: scale(1.2);
+}
+
+.h-de-pagina .nav-links{
+    list-style: none;
+}
+
+.h-de-pagina .nav-links li{
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.h-de-pagina .nav-links li:hover{
+    transform: scale(1.1);
+    
+}
+
+.h-de-pagina .nav-links li a{
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.h-de-pagina .nav-links li a:hover{
+    color: #ffbc0e;
+}
+
+.h-de-pagina .sesion button{
+    font-size: 500;
+    color: #0a141d;
+    padding: 9px 25px;
+    background: #eceff1;
+    border: none;
+    border-radius: 40px;
+    transition: all 0.3s ease 0s;
+}
+.h-de-pagina .sesion button:hover{
+    transform: scale(1.2);
+}
 /*Esto es el footer*/
+
 .pie-de-pagina{
     width: 100%;
     background-color: #0a141d;
@@ -50,7 +116,7 @@
 }
 /*El Hover se coloca para realizar reacciones. Cuando Le pasas el raton por arriba se pasa rojo*/
 .pie-de-pagina .case-one .box .redes a:hover{
-    color: red;
+    color: rgb(114, 114, 200);
 }
 .pie-de-pagina .case-two{
     padding: 15px 10px;
@@ -61,13 +127,25 @@
     color: blanchedalmond;
     justify-content: center;
 }
+
 /*@media sirve para el responsive, es decir, cuando el ancho de la pantalla baja se aplica esto*/
+
 @media screen and (max-width: 800px) {
     .pie-de-pagina .case-one{
         width: 90%;
         grid-template-columns: repeat(1, 1fr);
         grid-gap: 30px;
         padding: 35px 0px;
+    }
+    .h-de-pagina{
+        grid-template-columns: repeat(2, 1fr);
+        padding: 35px 0px;
+        grid-gap: 30px;
+        font-size: 10px;
+    }
+    .h-de-pagina .nav-links li{
+        padding: 5px 15px;
+        
     }
     
 }
