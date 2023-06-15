@@ -1,21 +1,28 @@
 .carrusel{
-    width: 100%;
-    height: 500px;
+    width: 65%;
+    max-width: 120em;
+    transition: all 0.4s ease;
     overflow: hidden;
-    padding: 10px;
 }
 .carrusel .grande{
-    width: 100%;
-    transition: all .5s ease;
+    width: 200%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+    transition: all 0.5s ease;
+    transform: translateX(0%);
 }
 .carrusel .grande img{
-    width: 100%;
-    height: 100%;
+    width: calc( 100% / 2 - 2em);
     min-height: 10vh;
+    transition: all 0.4s ease;
+    border-radius: 1em;
 }
 .puntos{
     width: 100%;
-    padding: .4em;
+    /*padding: .4em;*/
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
