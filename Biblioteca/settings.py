@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'Home',
     'authentication',
     'GenerarPrestamo',
-    'VisualizarPrestamos',
 ]
 
 MIDDLEWARE = [
