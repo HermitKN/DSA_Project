@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class VisualizarprestamosConfig(AppConfig):
+class AdministrarestudiantesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'VisualizarPrestamos'
+    name = 'AdministrarEstudiantes'
