@@ -13,7 +13,7 @@
             <div class="h-de-pagina">
                 <div style="text-align: left; margin-right: -50px;" class="logo">
                     <figure>
-                        <a href="#">
+                        <a href="{% url 'Home' %}">
                             <img src="{% static 'Biblioteca/imgprojts/Logo.png' %}" alt="Logo UDO">
                         </a>
                     </figure>
@@ -21,7 +21,7 @@
                 <nav  style="text-align: center; margin-right: 20px;">
                     <ul class="nav-links">
                         <li><a href="#">Administrar Usuarios</a></li>
-                        <li><a href="#">Prestamo de Libros</a></li>
+                        <li><a href="{% url 'GenerarPrestamo' %}">Prestamo de Libros</a></li>
                         <li><a href="#">Notas de Prestamo</a></li>
                         <li><a href="#">Administrar Libros</a></li>
                     </ul>

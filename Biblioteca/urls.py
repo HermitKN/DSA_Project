@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Home.urls')),
     path('authentication/', include('authentication.urls')),
+    path('generarprestamo/', include('GenerarPrestamo.urls')),
 ]
