@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'Home',
     'authentication',
     'GenerarPrestamo',
+    'AdministrarEstudiantes',
+    'AdministrarLibros',
+    'NotasPrestamo',
 ]
 
 MIDDLEWARE = [
