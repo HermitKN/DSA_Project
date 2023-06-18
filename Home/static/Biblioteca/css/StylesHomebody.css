@@ -1,11 +1,13 @@
 .case1{
-    width: 100%;
+    width: 95%;
     display: grid;
     grid-template-rows: 100% 90%; 
     grid-template-columns: 7fr 2fr ;
     padding: 45px 50px;
     grid-gap: 0px;
-    border-bottom: 2px solid black;
+    background-color: #11212f;
+    margin: 10px 0;
+    border-radius: 1em;
 }
 .case1 .Texto{
     width: 100%;
@@ -15,6 +17,7 @@
 }
 .case1 .Texto h2{
     padding: 60px 0;
+    color: aliceblue;
 }
 .carrusel{
     width: 65%;
@@ -71,14 +74,18 @@
     grid-gap: 50px;
     padding: 45px 0px;
 }
+.content .box{
+    background-color: #11212f;
+    border-radius: 1em;
+}
 .content .box .circle{
-    background-color: aqua;
     width: 150px;
     height: 150px;
     border-radius: 70%;
+    border: 5px solid white;
 }
 .content .box a{
-    justify-content: center;
+    margin-top: 15%;
     color: aliceblue;
     background-color: black;
     font-size: 100px;
@@ -86,4 +93,9 @@
 }
 .content .box h2{
     text-align: center;
+    color: aliceblue;
+}
+.content .box p{
+    text-align: center;
+    color: aliceblue;
 }
