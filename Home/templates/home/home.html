@@ -3,24 +3,39 @@
 {% load static %}
 
 {% block content %} 
+
 <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesHomebody.css' %}"><!--Para los estilos-->
 <script defer src="{% static 'Biblioteca\js\action.js' %}"></script>
+<script src="https://kit.fontawesome.com/6f44e469ea.js" crossorigin="anonymous"></script><!--Esto es para los iconos-->
 
-<center><div class="carrusel">
-    <div class="grande">
-        <img src="{% static 'Biblioteca\imgprojts\book1.jpg' %}" alt="Imagen 1" class="img" id="imgRh">
-        <img src="{% static 'Biblioteca\imgprojts\book2.png' %}" alt="Imagen 2" class="img" id="imgLh">
+<div class="case1">
+    <div class="carrusel">
+        <div class="grande">
+            <img src="{% static 'Biblioteca\imgprojts\book1.jpg' %}" alt="Imagen 1" class="img" id="imgRh">
+            <img src="{% static 'Biblioteca\imgprojts\book2.png' %}" alt="Imagen 2" class="img" id="imgLh">
+        </div>
+        <ul class="puntos">
+            <li class="punto"></li>
+            <li class="punto"></li>
+        </ul>
     </div>
-    <ul class="puntos">
-        <li class="punto"></li>
-        <li class="punto"></li>
-    </ul>
-</div></center>
-<div>
-    
+    <div class="Texto">
+        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam, quidem voluptatem! Laudantium autem soluta tenetur architecto earum debitis doloremque excepturi vitae! Alias, reiciendis nihil! Sit ad at accusantium corrupti adipisci!</h2>
+    </div>
 </div>
 
 <div class="content">
-    <h1>cosas que podemos hacer</h1>
+    <div class="box">
+        <center><div class="circle"><a class="fa-solid fa-book"></a></div></center>
+        <h2>Administrar Libros</h2>
+    </div>
+    <div class="box">
+        <center><div class="circle"><a class="fa-solid fa-handshake"></a></div></center>
+        <h2>Realizar Prestamos de Libros</h2>
+    </div>
+    <div class="box">
+        <center><div class="circle"><a class="fa-solid fa-layer-group"></a></div></center>
+        <h2>Administrar Prestamos</h2>
+    </div>
 </div>
 {% endblock %}
