@@ -5,20 +5,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <title>UDO Biblioteca Universitaria</title>
-        <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesBase.css' %}"><!--Para los estilos-->
+        <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}"><!--Para los estilos-->
         <script src="https://kit.fontawesome.com/6f44e469ea.js" crossorigin="anonymous"></script><!--Esto es para los iconos-->
     </head>
     <body>
         <header>
             <div class="h-de-pagina">
-                <div class="logo">
+                <div style="text-align: left; margin-right: -50px;" class="logo">
                     <figure>
                         <a href="#">
-                            <img src="{% static 'Biblioteca\imgprojts\Logo.png' %}" alt="Logo UDO">
+                            <img src="{% static 'Biblioteca/imgprojts/Logo.png' %}" alt="Logo UDO">
                         </a>
                     </figure>
                 </div>
-                <nav>
+                <nav  style="text-align: center; margin-right: 20px;">
                     <ul class="nav-links">
                         <li><a href="#">Administrar Usuarios</a></li>
                         <li><a href="#">Prestamo de Libros</a></li>
@@ -26,8 +26,16 @@
                         <li><a href="#">Administrar Libros</a></li>
                     </ul>
                 </nav>
-                <a href="#" class="sesion"><button>Sesion</button></a>
-            </div>
+                
+                {% if user.is_authenticated %}
+                    <div style="text-align: right; margin-right: -50px;"><a style="color: rgb(26, 216, 8);">Hola {{user.username}}</a></div>
+                    <div style="text-align: right; margin-right: -50px;"><a href="{% url 'Logout' %}" class="sesion"><button>Log out</button></a></div>
+                {% else %}
+                    <div style="text-align: right; margin-right: -70px;"><a href="{% url 'Login' %}" class="sesion"><button>Login</button></a></div>
+                    <div style="text-align: right; margin-right: -20px;"><a href="{% url 'SignUp' %}" class="sesion"><button>Sign Up</button></a></div>
+                {% endif %}
+                 
+            </li>
         </header>
         <div>
             {% block content %}
@@ -39,7 +47,7 @@
                 <div class="box">
                     <figure>
                         <a href="#">
-                            <img src="{% static 'Biblioteca\imgprojts\Logo.png' %}" alt="Logo UDO">
+                            <img src="{% static 'Biblioteca/imgprojts/Logo.png' %}" alt="Logo UDO">
                         </a>
                     </figure>
                 </div>

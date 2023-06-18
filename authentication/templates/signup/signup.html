@@ -12,15 +12,8 @@
     <form method="post" action="" style="color: black;">
         {% csrf_token %}
         <div style="width: 75%; margin: auto;">
-            {% if messages %}
-                {% for message in messages%}
-                    <span class="alert alert-danger{{error_messages.tags}}"> {{message}} </span>
-                {% endfor %}
-            {% endif %}
-            <br/>
-            &nbsp;
             {{form|crispy}} 
-            <button type="submit" class="btn btn-success">Ingresar Sesión</button> 
+            <button type="submit" class="btn btn-success">Registrarse</button> 
         </div>
     </form>
     &nbsp;
