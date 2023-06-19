@@ -1,7 +1,7 @@
 from django.urls import path
-from NotasPrestamo import views
+from .import views
 
 urlpatterns = [ 
 
-    path('notas',views.notas_prestamo, name="NotasPrestamo"),
+    path('',views.notas_prestamo, name="NotasPrestamo"),
 ]
