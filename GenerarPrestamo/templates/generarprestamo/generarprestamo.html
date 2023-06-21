@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
     &nbsp;
     <div style="width: 50%; margin: auto;">
+        {% if "isvalid" in request.GET %}
+            <p style="color: red">Préstamo generado correctamente</p>
+        {% endif %}
         <form method="POST" action="">
             {% csrf_token %}
             <table style="margin: 20px auto;">{{myForm.as_table}}</table>
