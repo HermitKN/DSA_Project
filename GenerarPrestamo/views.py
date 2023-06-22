@@ -9,11 +9,10 @@ def generar_prestamo(request):
     if request.method=="POST":
         formulario_prestamo=FormularioPrestamo(data=request.POST)
         if formulario_prestamo.is_valid():
-            nota=request.POST.get("nota")
-            cedula=request.POST.get("cedula")
-            codigo=request.POST.get("codigo")
-            limite=request.POST.get("limite")
-            prestamo=Prestamo(nota, cedula, codigo, limite)
+            prestamo=Prestamo()
+            prestamo.cedula=formulario_prestamo.cleaned_data['cedula']
+            prestamo.codigo=formulario_prestamo.cleaned_data['codigo']
+            prestamo.limite=formulario_prestamo.cleaned_data['limite']
             prestamo.save()
             return redirect("/generarprestamo/?isvalid")
     return render(request, "generarprestamo/generarprestamo.html", {'myForm':formulario_prestamo})
