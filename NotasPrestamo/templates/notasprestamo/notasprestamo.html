@@ -3,5 +3,33 @@
 {% load static %}
 
 {% block content %}
-
+    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
+    <head>
+        <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesTable.css' %}">
+    </head>
+    &nbsp;
+    <table style="margin: auto;">
+        <thead>
+            <tr>
+                <th>Nota</th>
+                <th>Cédula del estudiante</th>
+                <th>Código del libro</th>
+                <th>Fecha de generación del préstamo</th>
+                <th>Fecha límite de devolución</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nota in notas %}
+                <tr>
+                    <td>{{nota.nota}}</td>
+                    <td>{{nota.cedula}}</td>
+                    <td>{{nota.codigo}}</td>
+                    <td>{{nota.fecha}}</td>
+                    <td>{{nota.limite}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    &nbsp;
 {% endblock %} 
