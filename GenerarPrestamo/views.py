@@ -15,7 +15,6 @@ def generar_prestamo(request):
             prestamo.limite=formulario_prestamo.cleaned_data['limite']
             prestamo.save()
             return redirect("/generarprestamo/?isvalid")
-        else:
-            formulario_prestamo=FormularioPrestamo()
+        
     prestamos=Prestamo.objects.last()
     return render(request, "generarprestamo/generarprestamo.html", {'myForm':formulario_prestamo, 'prestamos': prestamos})
