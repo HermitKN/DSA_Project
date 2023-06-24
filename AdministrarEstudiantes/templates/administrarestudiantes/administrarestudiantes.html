@@ -3,12 +3,12 @@
 {% load static %} <!-- Le dice a Django que cargue la ruta de la carpeta static. -->
                   <!-- De esta forma se localizan los archivos de una manera más fácil -->
 
-{% block content %}
+{% block content %} <!-- Donde se coloca el contenido independiente de la plantilla hija -->
     <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Estilos de Bootstrap -->
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}"> <!-- Y más estilos -->
     &nbsp;
     <div style="width: 50%; margin: auto;">
-        {% if "isvalid" in request.GET %} /* si se obtiene la redirección a la nueva url*/
+        {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
             <!-- se visualiza el último estudiante de la tabla luego de añadirlo para referenciar que ha entrado a la base de datos correctaente -->
             <p style="color: red; margin-left: 50px;">Estudiante {{estudiantes.nombre}} añadido correctamente</p>
         {% endif %}
