@@ -4,7 +4,7 @@ from .models import Estudiante # Importamos la tabla de models.py
 # Create your views here.
 
 def administrar_estudiantes(request):
-    formulario_estudiantes=FormularioEstudiante()
+    formulario_estudiantes=FormularioEstudiante() # Almacenas el formulario importado en la variable formulario_estudiantes
     if request.method=="POST":
         formulario_estudiantes=FormularioEstudiante(data=request.POST)
         if formulario_estudiantes.is_valid(): # Si es válido, puedes acceder a los datos limpios (es decir, validados) a través de la propiedad cleaned_data
