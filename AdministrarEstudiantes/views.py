@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import FormularioEstudiante
+from .forms import FormularioEstudiante # Importamos el formulario de forms.py
 from .models import Estudiante
 # Create your views here.
 
@@ -7,7 +7,8 @@ def administrar_estudiantes(request):
     formulario_estudiantes=FormularioEstudiante()
     if request.method=="POST":
         formulario_estudiantes=FormularioEstudiante(data=request.POST)
-        if formulario_estudiantes.is_valid():
+        if formulario_estudiantes.is_valid(): # Si es válido, puedes acceder a los datos limpios (es decir, validados) a través de la propiedad cleaned_data
+            # Guardar la información en la base de datos
             estudiante=Estudiante()
             estudiante.nombre=formulario_estudiantes.cleaned_data['nombre']
             estudiante.cedula=formulario_estudiantes.cleaned_data['cedula']

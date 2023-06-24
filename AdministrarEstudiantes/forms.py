@@ -1,7 +1,7 @@
 from django import forms
 
-class FormularioEstudiante(forms.Form):
-
+class FormularioEstudiante(forms.Form): #Creación de formulario con el nombre FormularioEstudiante
+    # Campos del formulario
     nombre=forms.CharField(label="Nombre del Estudiante", max_length=20, required=True)
     cedula=forms.CharField(label="C.I. del Estudiante", max_length=20, required=True)
     email=forms.EmailField(label="Correo Electrónico", max_length=20, required=True)
