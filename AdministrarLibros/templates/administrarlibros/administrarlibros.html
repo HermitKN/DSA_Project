@@ -1,3 +1,37 @@
 {% extends "base/base.html" %}
 
 {% load static %}
+
+{% block content %}
+
+<div class="opc">
+    <div class="box">
+        <h1>¿Que actividad desea realizar?</h1>
+    </div>
+    <div class="box">
+        {% if user.is_authenticated %}
+            <button class="ops">
+                Ingresar
+            </button>
+            <button class="ops">
+                Eliminar
+            </button>
+            <button class="ops">
+                Editar
+            </button>
+            <button class="ops">
+                Visualizar
+            </button>
+        {% else %}
+            <button class="ops">
+                Visualizar
+            </button>
+        {% endif %}
+       
+        
+        
+        
+    </div>
+</div>
+
+{% endblock %}
