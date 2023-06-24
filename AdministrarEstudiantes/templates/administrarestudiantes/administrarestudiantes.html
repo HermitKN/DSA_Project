@@ -3,7 +3,7 @@
 {% load static %} <!-- Le dice a Django que cargue la ruta de la carpeta static. -->
                   <!-- De esta forma se localizan los archivos de una manera más fácil -->
 
-{% block content %}
+{% block content %} <!-- Donde se coloca el contenido independiente de la plantilla hija -->
     <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Estilos de Bootstrap -->
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}"> <!-- Y más estilos -->
     &nbsp;
