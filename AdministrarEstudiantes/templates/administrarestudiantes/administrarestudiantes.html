@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
     &nbsp;
     <div style="width: 50%; margin: auto;">
-        {% if "isvalid" in request.GET %}
+        {% if "isvalid" in request.GET %} /* si se obtiene la redirección a la nueva url*/
+            /* se visualiza el último estudiante de la tabla luego de añadirlo para referenciar que ha entrado a la base de datos correctaente */
             <p style="color: red; margin-left: 50px;">Estudiante {{estudiantes.nombre}} añadido correctamente</p>
         {% endif %}
         <form method="POST" action="">
