@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import FormularioEstudiante # Importamos el formulario de forms.py
-from .models import Estudiante
+from .models import Estudiante # Importamos la tabla de models.py
 # Create your views here.
 
 def administrar_estudiantes(request):
@@ -19,4 +19,5 @@ def administrar_estudiantes(request):
             return redirect("/administrarestudiantes/?isvalid")
         
     estudiantes=Estudiante.objects.last()
+    # Se renderiza la plantilla con todos los campos del formulario creado
     return render(request, "administrarestudiantes/administrarestudiantes.html", {'myFormE':formulario_estudiantes, 'estudiantes': estudiantes})
