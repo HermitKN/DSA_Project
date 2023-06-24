@@ -13,7 +13,7 @@
         {% endif %}
         <form method="POST" action="">
             {% csrf_token %}
-            <table style="margin: 20px auto;">{{myFormE.as_table}}</table>
+            <table style="margin: 20px auto;">{{myFormE.as_table}}</table> /* Con esta línea ya se renderiza todo el formulario, y en modo tabla */
             <input style="text-align: center; margin-left: 250px;" type="submit" class="btn btn-success" value="Generar Prestamo">
         </form>
     </div>
