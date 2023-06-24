@@ -1,3 +1,20 @@
 {% extends "base/base.html" %}
 
 {% load static %}
+
+{% block content %}
+    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
+    &nbsp;
+    <div style="width: 50%; margin: auto;">
+        {% if "isvalid" in request.GET %}
+            <p style="color: red; margin-left: 50px;">Estudiante {{estudiantes.nombre}} añadido correctamente</p>
+        {% endif %}
+        <form method="POST" action="">
+            {% csrf_token %}
+            <table style="margin: 20px auto;">{{myFormE.as_table}}</table>
+            <input style="text-align: center; margin-left: 250px;" type="submit" class="btn btn-success" value="Generar Prestamo">
+        </form>
+    </div>
+    &nbsp;
+{% endblock %} 
