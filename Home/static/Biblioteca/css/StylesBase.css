@@ -59,6 +59,10 @@ body{
     color: #ffbc0e;
 }
 
+.h-de-pagina .nav-links li a.active{
+    color: #ffbc0e;
+}
+
 .h-de-pagina .sesion button{
     font-size: 500;
     color: #0a141d;

@@ -20,10 +20,10 @@
                 </div>
                 <nav  style="text-align: center; margin-right: 20px;">
                     <ul class="nav-links">
-                        <li><a href="{% url 'AdministrarEstudiantes' %}">Administrar Estudiantes</a></li>
-                        <li><a href="{% url 'GenerarPrestamo' %}">Prestamo de Libros</a></li>
-                        <li><a href="{% url 'NotasPrestamo' %}">Notas de Prestamo</a></li>
-                        <li><a href="{% url 'AdministrarLibros' %}">Administrar Libros</a></li>
+                        <li><a class="{% if request.path == '/administrarestudiantes/' %}active{% endif %}" href="{% url 'AdministrarEstudiantes' %}">Administrar Estudiantes</a></li>
+                        <li><a class="{% if request.path == '/generarprestamo/' %}active{% endif %}" href="{% url 'GenerarPrestamo' %}">Prestamo de Libros</a></li>
+                        <li><a class="{% if request.path == '/notasprestamo/' %}active{% endif %}" href="{% url 'NotasPrestamo' %}">Notas de Prestamo</a></li>
+                        <li><a class="{% if request.path == '/administrarlibros/' %}active{% endif %}" href="{% url 'AdministrarLibros' %}">Administrar Libros</a></li>
                     </ul>
                 </nav>
                 
