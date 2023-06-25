@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
 
 <div class="opciones">
     <div class="box">
@@ -26,34 +27,30 @@
             <button class="ops">
                 Visualizar
             </button>
-        {% endif %}-->
-
-        <center><div class="ingresar" style="width: 50%;">
-            <h2>Se esta ingresando un nuevo Libro/Tesis</h2>
-            <h3>Por favor complete los campos:</h3>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Ingresar al sistema</button>
-            </form>
-        </div></center>
-
-        <div class="visualizar">
-
-        </div>
-
-        <div class="eliminar">
-
-        </div>
-
-        <div class="editar">
-
-        </div>
-       
-        
-        
-        
+        {% endif %}-->  
     </div>
+</div>
+
+<center><div class="ingresar" style="width: 50%;">
+    <h2>Se esta ingresando un nuevo Libro/Tesis</h2>
+    <h3>Por favor complete los campos:</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ingresar al sistema</button>
+    </form>
+</div></center>
+
+<div class="visualizar">
+
+</div>
+
+<div class="eliminar">
+
+</div>
+
+<div class="editar">
+
 </div>
 
 {% endblock %}
