@@ -9,11 +9,8 @@ def generar_prestamo(request):
     if request.method=="POST":
         formulario_prestamo=FormularioPrestamo(data=request.POST)
         if formulario_prestamo.is_valid():
-            prestamo=Prestamo()
-            prestamo.cedula=formulario_prestamo.cleaned_data['cedula']
-            prestamo.codigo=formulario_prestamo.cleaned_data['codigo']
-            prestamo.limite=formulario_prestamo.cleaned_data['limite']
-            prestamo.save()
+            formulario_prestamo.cleaned_data['limite']
+            formulario_prestamo.save()
             return redirect("/generarprestamo/?isvalid")
         
     prestamos=Prestamo.objects.last()

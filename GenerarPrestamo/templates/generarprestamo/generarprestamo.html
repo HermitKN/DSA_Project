@@ -10,6 +10,7 @@
         {% if "isvalid" in request.GET %}
             <p style="color: red; margin-left: 50px;">Nota de préstamo {{prestamos.nota}} generada correctamente</p>
         {% endif %}
+        <h3 style="text-align: center">Ingresa un Préstamo al Sistema</h3>
         <form method="POST" action="">
             {% csrf_token %}
             <table style="margin: 20px auto;">{{myForm.as_table}}</table>
