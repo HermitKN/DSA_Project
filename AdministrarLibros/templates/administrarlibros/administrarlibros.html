@@ -3,46 +3,52 @@
 {% load static %}
 
 {% block content %}
+    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
-
-    <div class="opciones">
-        <div class="box">
-            <h1>¿Que actividad desea realizar?</h1>
+    &nbsp;
+    {% if user.is_authenticated %}
+        <div class="opciones">
+            <div class="box">
+                <h1>¿Que actividad desea realizar?</h1>
+            </div>
+            <div class="box2">
+                <button class="ops" name="Ingresar">
+                    Ingresar
+                </button>
+                <button class="ops">
+                    Eliminar
+                </button>
+                <button class="ops">
+                    Editar
+                </button>
+                <button class="ops">
+                    Visualizar
+                </button>
+            </div>
         </div>
-        <div class="box2">
-            <button class="ops" name="Ingresar">
-                Ingresar
-            </button>
-            <button class="ops">
-                Eliminar
-            </button>
-            <button class="ops">
-                Editar
-            </button>
-            <button class="ops">
-                Visualizar
-            </button>
-        </div>
-    </div>
 
-    {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
-        <p style="color: red; margin-left: 300px;">Libro ingresado correctamente</p>
+        {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
+            <p style="color: red; margin-left: 300px;">Libro ingresado correctamente</p>
+        {% endif %}
+
+        <center><div class="ingresar" style="width: 50%;">
+            <h2>Se esta ingresando un nuevo Libro/Tesis</h2>
+            <h3>Por favor complete los campos:</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <table>{{ formL.as_table }}</table>
+                <button type="submit">Ingresar al sistema</button>
+            </form>
+        </div></center>
+
+        <div class="visualizar"></div>
+
+        <div class="eliminar"></div>
+
+        <div class="editar"></div>
+    {% else %}
+        <h3 style="text-align: center">Perdone pero debe logearse</h3>
     {% endif %}
-
-    <center><div class="ingresar" style="width: 50%;">
-        <h2>Se esta ingresando un nuevo Libro/Tesis</h2>
-        <h3>Por favor complete los campos:</h3>
-        <form method="POST">
-            {% csrf_token %}
-            <table>{{ formL.as_table }}</table>
-            <button type="submit">Ingresar al sistema</button>
-        </form>
-    </div></center>
-
-    <div class="visualizar"></div>
-
-    <div class="eliminar"></div>
-
-    <div class="editar"></div>
-    
+    &nbsp;
 {% endblock %}

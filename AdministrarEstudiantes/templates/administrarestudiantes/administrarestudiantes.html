@@ -8,45 +8,47 @@
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}"> <!-- Y más estilos -->
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
     &nbsp;
-
-    <div class="opciones">
-        <div class="box">
-            <h1>¿Que actividad desea realizar?</h1>
+    {% if user.is_authenticated %}
+        <div class="opciones">
+            <div class="box">
+                <h1>¿Que actividad desea realizar?</h1>
+            </div>
+            <div class="box2">
+                <button class="ops" name="Ingresar">
+                    Ingresar
+                </button>
+                <button class="ops">
+                    Eliminar
+                </button>
+                <button class="ops">
+                    Editar
+                </button>
+                <button class="ops">
+                    Visualizar
+                </button>
+            </div>
         </div>
-        <div class="box2">
-            <button class="ops" name="Ingresar">
-                Ingresar
-            </button>
-            <button class="ops">
-                Eliminar
-            </button>
-            <button class="ops">
-                Editar
-            </button>
-            <button class="ops">
-                Visualizar
-            </button>
+
+        <div style="width: 50%; margin: auto;">
+            {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
+                <!-- se visualiza el último estudiante de la tabla luego de añadirlo para referenciar que ha entrado a la base de datos correctaente -->
+                <p style="color: red; margin-left: 50px;">Estudiante añadido correctamente</p>
+            {% endif %}
+            <h3 style="text-align: center">Registra un Estudiante</h3>
+            <form method="POST" action=""> <!-- se crea un formulario con una petición de tipo post -->
+                {% csrf_token %} <!-- es un toquen de django que protege la información que se envía de tipo post -->
+                <table style="margin: 20px auto;">{{myFormE.as_table}}</table> <!-- Con esta línea ya se renderiza todo el formulario, y en modo tabla -->
+                <input style="text-align: center; margin-left: 250px;" type="submit" class="btn btn-success" value="Ingresar Estudiante"> <!-- El botón para enviar el formulario -->
+            </form>
         </div>
-    </div>
 
-    <div style="width: 50%; margin: auto;">
-        {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
-            <!-- se visualiza el último estudiante de la tabla luego de añadirlo para referenciar que ha entrado a la base de datos correctaente -->
-            <p style="color: red; margin-left: 50px;">Estudiante añadido correctamente</p>
-        {% endif %}
-        <h3 style="text-align: center">Registra un Estudiante</h3>
-        <form method="POST" action=""> <!-- se crea un formulario con una petición de tipo post -->
-            {% csrf_token %} <!-- es un toquen de django que protege la información que se envía de tipo post -->
-            <table style="margin: 20px auto;">{{myFormE.as_table}}</table> <!-- Con esta línea ya se renderiza todo el formulario, y en modo tabla -->
-            <input style="text-align: center; margin-left: 250px;" type="submit" class="btn btn-success" value="Ingresar Estudiante"> <!-- El botón para enviar el formulario -->
-        </form>
-    </div>
+        <div class="visualizar"></div>
 
-    <div class="visualizar"></div>
+        <div class="eliminar"></div>
 
-    <div class="eliminar"></div>
-
-    <div class="editar"></div>
-
+        <div class="editar"></div>
+    {% else %}
+        <h3 style="text-align: center">Perdone pero debe logearse</h3>
+    {% endif %}
     &nbsp;
 {% endblock %} 

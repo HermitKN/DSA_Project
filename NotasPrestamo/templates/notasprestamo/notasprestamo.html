@@ -9,27 +9,31 @@
         <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesTable.css' %}">
     </head>
     &nbsp;
-    <table style="margin: auto;">
-        <thead>
-            <tr>
-                <th>Nota</th>
-                <th>Estudiante</th>
-                <th>Libro</th>
-                <th>Fecha de generación del préstamo</th>
-                <th>Fecha límite de devolución</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for nota in notas %}
+    {% if user.is_authenticated %}
+        <table style="margin: auto;">
+            <thead>
                 <tr>
-                    <td>{{nota.nota}}</td>
-                    <td>{{nota.estudiante}}</td>
-                    <td>{{nota.libro}}</td>
-                    <td>{{nota.fecha}}</td>
-                    <td>{{nota.limite}}</td>
+                    <th>Nota</th>
+                    <th>Estudiante</th>
+                    <th>Libro</th>
+                    <th>Fecha de generación del préstamo</th>
+                    <th>Fecha límite de devolución</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for nota in notas %}
+                    <tr>
+                        <td>{{nota.nota}}</td>
+                        <td>{{nota.estudiante}}</td>
+                        <td>{{nota.libro}}</td>
+                        <td>{{nota.fecha}}</td>
+                        <td>{{nota.limite}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h3 style="text-align: center">Perdone pero debe logearse</h3>
+    {% endif %}
     &nbsp;
 {% endblock %} 
