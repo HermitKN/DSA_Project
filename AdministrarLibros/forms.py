@@ -1,4 +1,8 @@
 from django import forms
+<<<<<<< HEAD
+=======
+from .models import Tipo
+>>>>>>> 775ca723f2726b92ee8806c695f57a96fae7e948
 
 Choice_Libro = [
     ('Tesis','Tesis'),

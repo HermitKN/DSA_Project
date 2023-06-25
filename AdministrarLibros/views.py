@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import FormularioLibro
 from .models import Libro
+from django.shortcuts import render, redirect
+from .forms import FormularioLibro
+from .models import Libro
 # Create your views here.
 
 def administrar_libros(request):

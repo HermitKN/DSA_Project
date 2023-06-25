@@ -9,7 +9,11 @@ class Libro(models.Model):# Tabla con el nombre Libro
     tipo=models.CharField(max_length=15, verbose_name="Autor del libro")
     cantidad=models.IntegerField(verbose_name="Cantidad de copias")
     categoria=models.CharField(max_length=20, verbose_name="Categoria del Libro")
+<<<<<<< HEAD
     fecha=models.DateTimeField(auto_now_add=True, verbose_name="Fecha del Ingreso")
+=======
+    #fecha=models.DateTimeField(auto_now_add=True, verbose_name="Fecha del Ingreso")
+>>>>>>> 775ca723f2726b92ee8806c695f57a96fae7e948
 
     def __str__(self):
         return self.nombre
@@ -18,4 +22,10 @@ class Libro(models.Model):# Tabla con el nombre Libro
         verbose_name='libro'
         verbose_name_plural='libros'
 
+<<<<<<< HEAD
+=======
+class Tipo(models.Model):
+
+    Tipo1 = models.CharField(max_length=10)
+>>>>>>> 775ca723f2726b92ee8806c695f57a96fae7e948
     
