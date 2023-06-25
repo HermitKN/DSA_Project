@@ -1,4 +1,5 @@
 from django import forms
+from .models import Libro
 
 Choice_Libro = [
     ('Tesis','Tesis'),
@@ -14,3 +15,9 @@ class FormularioLibro(forms.Form): #Creación de formulario con el nombre Formul
     tipo=forms.ChoiceField(label="Tipo", choices=Choice_Libro)
     cantidad = forms.IntegerField(label="Numero de Copias",required=True)
     categoria=forms.CharField(label="Tags", max_length=20, required=True)
+
+    def clean_id(self):
+        id = self.cleaned_data['id']
+        if Libro.objects.filter(id=id).exists():
+            raise forms.ValidationError("El ID del libro ya existe")
+        return id
