@@ -12,6 +12,7 @@
             <!-- se visualiza el último estudiante de la tabla luego de añadirlo para referenciar que ha entrado a la base de datos correctaente -->
             <p style="color: red; margin-left: 50px;">Estudiante {{estudiantes.nombre}} añadido correctamente</p>
         {% endif %}
+        <h3 style="text-align: center">Registra un Estudiante</h3>
         <form method="POST" action=""> <!-- se crea un formulario con una petición de tipo post -->
             {% csrf_token %} <!-- es un toquen de django que protege la información que se envía de tipo post -->
             <table style="margin: 20px auto;">{{myFormE.as_table}}</table> <!-- Con esta línea ya se renderiza todo el formulario, y en modo tabla -->

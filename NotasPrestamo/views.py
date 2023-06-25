@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-#from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import render
 from GenerarPrestamo.models import Prestamo
 
 # Create your views here.

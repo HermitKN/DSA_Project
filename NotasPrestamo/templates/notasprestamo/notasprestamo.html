@@ -13,8 +13,8 @@
         <thead>
             <tr>
                 <th>Nota</th>
-                <th>Cédula del estudiante</th>
-                <th>Código del libro</th>
+                <th>Estudiante</th>
+                <th>Libro</th>
                 <th>Fecha de generación del préstamo</th>
                 <th>Fecha límite de devolución</th>
             </tr>
@@ -23,8 +23,8 @@
             {% for nota in notas %}
                 <tr>
                     <td>{{nota.nota}}</td>
-                    <td>{{nota.cedula}}</td>
-                    <td>{{nota.codigo}}</td>
+                    <td>{{nota.estudiante}}</td>
+                    <td>{{nota.libro}}</td>
                     <td>{{nota.fecha}}</td>
                     <td>{{nota.limite}}</td>
                 </tr>

@@ -1,7 +1,8 @@
 from django import forms
+from .models import Prestamo
 
-class FormularioPrestamo(forms.Form):
+class FormularioPrestamo(forms.ModelForm):
+    class Meta:
+        model = Prestamo
+        fields = ['estudiante', 'libro', 'limite']
 
-    cedula=forms.CharField(label="C.I. del Estudiante", required=True)
-    codigo=forms.CharField(label="Código del Libro", required=True)
-    limite=forms.DateField(label="Fecha límite de entrega", required=True)
