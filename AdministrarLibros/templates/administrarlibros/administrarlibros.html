@@ -4,13 +4,13 @@
 
 {% block content %}
 
-<div class="opc">
+<div class="opciones">
     <div class="box">
         <h1>¿Que actividad desea realizar?</h1>
     </div>
     <div class="box">
-        {% if user.is_authenticated %}
-            <button class="ops">
+        <!--{% if user.is_authenticated %}-->
+            <button class="ops" name="Ingresar">
                 Ingresar
             </button>
             <button class="ops">
@@ -22,11 +22,31 @@
             <button class="ops">
                 Visualizar
             </button>
-        {% else %}
+        <!--{% else %}
             <button class="ops">
                 Visualizar
             </button>
-        {% endif %}
+        {% endif %}-->
+
+        <center><div class="ingresar" style="width: 50%;">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Enviar</button>
+            </form>
+        </div></center>
+
+        <div class="visualizar">
+
+        </div>
+
+        <div class="eliminar">
+
+        </div>
+
+        <div class="editar">
+
+        </div>
        
         
         

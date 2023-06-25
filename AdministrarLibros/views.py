@@ -1,7 +1,24 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from .forms import FormularioLibro
+from .models import Libro
 # Create your views here.
 
 def administrar_libros(request):
 
-    return render(request, "administrarlibros/administrarlibros.html")
+    FormLibro = FormularioLibro()
+
+    if request.method=="POST":
+        FormLibro = FormularioLibro(data=request.POST) # 
+        if FormLibro.is_valid():
+            book = Libro() 
+            book.nombre = FormLibro.cleaned_data['nombre']
+            book.autor = FormLibro.cleaned_data['autor']
+            book.tipo = FormLibro.cleaned_data['tipo']
+            book.cantidad = FormLibro.cleaned_data['cantidad']
+            book.categoria = FormLibro.cleaned_data['categoria']
+            book.save() 
+            return redirect("/administrarlibros/?isvalid")
+        
+    book=Libro.objects.last()
+
+    return render(request, "administrarlibros/administrarlibros.html", {'form':FormLibro})
