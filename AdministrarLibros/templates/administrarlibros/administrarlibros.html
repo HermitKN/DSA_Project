@@ -27,17 +27,18 @@
                 Visualizar
             </button>
         {% endif %}-->
+        
+        {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
+            <!-- se visualiza el último libro de la tabla luego de añadirlo para referenciar que ha entrado a la base de datos correctaente -->
+            <p style="color: red; margin-left: 300px;">Libro(s) de {{books.nombre}} ingresado correctamente</p>
+        {% endif %}
 
         <center><div class="ingresar" style="width: 50%;">
             <h2>Se esta ingresando un nuevo Libro/Tesis</h2>
             <h3>Por favor complete los campos:</h3>
             <form method="POST">
                 {% csrf_token %}
-<<<<<<< HEAD
                 {{ formL.as_p }}
-=======
-                {{ form.as_p }}
->>>>>>> 775ca723f2726b92ee8806c695f57a96fae7e948
                 <button type="submit">Ingresar al sistema</button>
             </form>
         </div></center>

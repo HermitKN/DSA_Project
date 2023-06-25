@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import FormularioLibro
 from .models import Libro
-from django.shortcuts import render, redirect
-from .forms import FormularioLibro
-from .models import Libro
+
 # Create your views here.
 
 def administrar_libros(request):
@@ -14,6 +12,7 @@ def administrar_libros(request):
         FormLibro = FormularioLibro(data=request.POST) 
         if FormLibro.is_valid():
             book = Libro() 
+            book.id = FormLibro.cleaned_data['id']
             book.nombre = FormLibro.cleaned_data['nombre']
             book.autor = FormLibro.cleaned_data['autor']
             book.tipo = FormLibro.cleaned_data['tipo']

@@ -1,8 +1,4 @@
 from django import forms
-<<<<<<< HEAD
-=======
-from .models import Tipo
->>>>>>> 775ca723f2726b92ee8806c695f57a96fae7e948
 
 Choice_Libro = [
     ('Tesis','Tesis'),
@@ -12,8 +8,8 @@ Choice_Libro = [
 class FormularioLibro(forms.Form): #Creación de formulario con el nombre FormularioLibro
 
     # Campos del formulario
-    nombre=forms.CharField(label="Nombre del Libro", max_length=20, required=True)
     id=forms.CharField(label="Id", max_length=20, required=True)
+    nombre=forms.CharField(label="Nombre del Libro", max_length=50, required=True)
     autor=forms.CharField(label="Autor", max_length=50, required=True)
     tipo=forms.ChoiceField(label="Tipo", choices=Choice_Libro)
     categoria=forms.CharField(label="Tags", max_length=20, required=True)
