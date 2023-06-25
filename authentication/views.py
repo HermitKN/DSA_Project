@@ -22,7 +22,7 @@ class Sign_Up(View): # Registro
         else:
             for msg in form.error_messages:
                 messages.error(request, form.error_messages[msg]) # Muestra mensajes de error cuando el formulario no es válido
-            return render(request, "signup/signup.html",{"form":form}) 
+            return render(request, "signup/signup.html",{"form":form}) # Renderiza el signup y su formulario
 
 
 def log_out(request): # Cerrar sesión
@@ -44,4 +44,4 @@ def log_in(request): # Iniciar sesión
         else:
             messages.error(request, "Incorrect information") # mensaje de error para cuando la información se halla introducido incorrectamente
     form=AuthenticationForm() # Construye un formulario para login
-    return render(request, "login/login.html",{"form":form})
+    return render(request, "login/login.html",{"form":form}) # Renderiza el login y su formulario
