@@ -1,19 +1,21 @@
-{% extends "base/base.html" %}
+{% extends "base/base.html" %} <!-- Hereda el contenido de la plantilla base -->
 
-{% load static %}
+{% load static %} <!-- Le dice a Django que cargue la ruta de la carpeta static. -->
+                  <!-- De esta forma se localizan los archivos de una manera más fácil -->
 
-{% block content %}
-    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
-    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
+{% block content %} <!-- Donde se coloca el contenido independiente de la plantilla hija -->
+    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Estilos de Bootstrap -->
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}"> <!-- Y más estilos -->
     &nbsp;
     <div style="width: 50%; margin: auto;">
-        {% if "isvalid" in request.GET %}
+        {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
+            <!-- se visualiza el último estudiante de la tabla luego de añadirlo para referenciar que ha entrado a la base de datos correctaente -->
             <p style="color: red; margin-left: 50px;">Estudiante {{estudiantes.nombre}} añadido correctamente</p>
         {% endif %}
-        <form method="POST" action="">
-            {% csrf_token %}
-            <table style="margin: 20px auto;">{{myFormE.as_table}}</table>
-            <input style="text-align: center; margin-left: 250px;" type="submit" class="btn btn-success" value="Generar Prestamo">
+        <form method="POST" action=""> <!-- se crea un formulario con una petición de tipo post -->
+            {% csrf_token %} <!-- es un toquen de django que protege la información que se envía de tipo post -->
+            <table style="margin: 20px auto;">{{myFormE.as_table}}</table> <!-- Con esta línea ya se renderiza todo el formulario, y en modo tabla -->
+            <input style="text-align: center; margin-left: 250px;" type="submit" class="btn btn-success" value="Generar Prestamo"> <!-- El botón para enviar el formulario -->
         </form>
     </div>
     &nbsp;
