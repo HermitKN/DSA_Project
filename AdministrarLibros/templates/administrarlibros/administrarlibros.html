@@ -29,10 +29,12 @@
         {% endif %}-->
 
         <center><div class="ingresar" style="width: 50%;">
+            <h2>Se esta ingresando un nuevo Libro/Tesis</h2>
+            <h3>Por favor complete los campos:</h3>
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Enviar</button>
+                <button type="submit">Ingresar al sistema</button>
             </form>
         </div></center>
 
