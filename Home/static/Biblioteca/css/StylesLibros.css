@@ -1,3 +1,29 @@
 .opciones{
     background-color: #11212f;
+    margin: 2%;
+    width: 50%;
+    border-radius: 1em;
+}
+.opciones h1{
+    color: aliceblue;
+}
+.opciones .box{
+    margin: 5px 15px;
+    padding: 5px;
+}
+.opciones .box2{
+    padding: 5px;
+    margin-left: 50px;
+}
+.opciones .box2 button{
+    border-radius: 40%;
+    width: 100px;
+    height: 50px;
+}
+.ingresar form table{
+    margin: auto;
+}
+.ingresar form button{
+    margin-top: 15px;
+
 }
