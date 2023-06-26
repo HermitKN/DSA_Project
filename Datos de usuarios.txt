@@ -5,3 +5,7 @@ Administrador
 Trabajador
 	User: Worker
 	password: 12book12
+
+Libreías a instalar:
+	pip install django-crispy-forms
+	pip install crispy-bootstrap4
