@@ -4,6 +4,7 @@ from AdministrarEstudiantes.models import Estudiante
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from datetime import datetime, timedelta
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 
@@ -17,6 +18,7 @@ class Prestamo(models.Model):
     estudiante=models.ForeignKey(Estudiante, on_delete=models.CASCADE, verbose_name="Estudiante")
     libro=models.ForeignKey(Libro, on_delete=models.CASCADE, verbose_name="Libro")
     tipo = models.CharField(max_length=7, choices=TIPO_CHOICES, verbose_name="Tipo de Prestamo")
+    cantidad = models.PositiveIntegerField(validators=[MinValueValidator(1)],verbose_name="Cantidad del libro")
     limite=models.DateField(editable=False, verbose_name="Fecha límite de Devolución")
     fecha=models.DateTimeField(auto_now_add=True)
     funcionario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, editable=False)
@@ -24,7 +26,7 @@ class Prestamo(models.Model):
     
     def __str__(self):
         if self.funcionario:
-            return f"Prestamo #{self.id} - Funcionario: {self.funcionario.username} - Fecha de devolución: {self.limite}"
+            return f"Prestamo #{self.id} - Libro: {self.libro.id} - Funcionario: {self.funcionario.username} - Fecha de devolución: {self.limite}"
         else:
             return f"Prestamo #{self.id} - Funcionario: No asignado - Fecha de devolución: {self.limite}"
 
@@ -36,6 +38,10 @@ class Prestamo(models.Model):
         if not self.id:  # Verifica si el objeto es nuevo
             self.limite = self._calculate_fecha_devolucion()
             self.funcionario = self._get_current_user()
+        book = self.libro
+        if book:
+            book.cantidad -= self.cantidad
+            book.save()
         super(Prestamo, self).save(*args, **kwargs)
 
     def _get_current_user(self):
