@@ -4,9 +4,9 @@ from GenerarPrestamo.models import Prestamo
 # Register your models here.
 
 class PrestamosAdmin(admin.ModelAdmin):
-    list_display=("id", "estudiante", "libro", "limite", "fecha", "funcionario")
-    search_fields=("id", "estudiante", "libro", "funcionario")
-    list_filter=("fecha", "limite", "funcionario")
+    list_display=("id", "tipo","estudiante", "libro", "funcionario", "limite", "fecha", "devuelto")
+    search_fields=("id", "estudiante", "libro", "funcionario", "devuelto", "tipo")
+    list_filter=("fecha", "limite", "funcionario", "devuelto", "tipo")
     date_hierarchy=("limite")
 
 admin.site.register(Prestamo, PrestamosAdmin)

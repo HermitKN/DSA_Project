@@ -4,5 +4,5 @@ from .models import Prestamo
 class FormularioPrestamo(forms.ModelForm):
     class Meta:
         model = Prestamo
-        fields = ['estudiante', 'libro']
+        fields = ['estudiante', 'libro', 'tipo']
 

@@ -14,22 +14,26 @@
             <thead>
                 <tr>
                     <th>Nota</th>
+                    <th>Tipo de préstamo</th>
                     <th>Estudiante</th>
                     <th>Libro</th>
+                    <th>Funcionario</th>
                     <th>Fecha de generación del préstamo</th>
                     <th>Fecha límite de devolución</th>
-                    <th>Funcionario</th>
+                    <th>Devuelto</th>
                 </tr>
             </thead>
             <tbody>
                 {% for nota in notas %}
                     <tr>
                         <td>{{nota.id}}</td>
+                        <td>{{nota.tipo}}</td>
                         <td>{{nota.estudiante}}</td>
                         <td>{{nota.libro}}</td>
+                        <td>{{nota.funcionario}}</td>
                         <td>{{nota.fecha}}</td>
                         <td>{{nota.limite}}</td>
-                        <td>{{nota.funcionario}}</td>
+                        <td>{{nota.devuelto}}</td>
                     </tr>
                 {% endfor %}
             </tbody>

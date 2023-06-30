@@ -7,13 +7,20 @@ from datetime import datetime, timedelta
 
 # Create your models here.
 
+TIPO_CHOICES = (
+    ('Interno', 'Interno'),
+    ('Externo', 'Externo'),
+)
+
 class Prestamo(models.Model):
     id = models.AutoField(primary_key=True, verbose_name="Nota de Prestamo")
     estudiante=models.ForeignKey(Estudiante, on_delete=models.CASCADE, verbose_name="Estudiante")
     libro=models.ForeignKey(Libro, on_delete=models.CASCADE, verbose_name="Libro")
+    tipo = models.CharField(max_length=7, choices=TIPO_CHOICES, verbose_name="Tipo de Prestamo")
     limite=models.DateField(editable=False, verbose_name="Fecha límite de Devolución")
     fecha=models.DateTimeField(auto_now_add=True)
     funcionario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, editable=False)
+    devuelto = models.BooleanField(default=False, editable=False, verbose_name="Devuetlo")
     
     def __str__(self):
         if self.funcionario:
@@ -54,6 +61,9 @@ class Prestamo(models.Model):
         return None  
     
     def _calculate_fecha_devolucion(self):
+        if self.tipo == 'Interno':
+            return datetime.today().date()
+        
         today = datetime.today().date()
         days_ahead = 7
 
