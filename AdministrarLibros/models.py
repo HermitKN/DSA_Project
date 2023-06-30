@@ -12,8 +12,7 @@ class Libro(models.Model):# Tabla con el nombre Libro
     fecha=models.DateTimeField(auto_now_add=True, verbose_name="Fecha del Ingreso")
 
     def __str__(self):
-        return self.nombre
-
+        return self.id
     class Meta:
         verbose_name='libro'
         verbose_name_plural='libros'

@@ -12,7 +12,7 @@ class Estudiante(models.Model):# Creación de la tabla con el nombre Estudiante
     fecha=models.DateTimeField(auto_now_add=True, verbose_name="Fecha del Registro")# En este campo, con el auto_now_add se permitirá que la información del tiempo se genere automáticamente, por lo tanto no contará para el formulario al momento de agregar un estudiante
 
     def __str__(self):
-        return self.nombre
+        return self.id
 
     class Meta:
         verbose_name='estudiante'
