@@ -9,7 +9,6 @@ def generar_prestamo(request):
     if request.method=="POST":
         formulario_prestamo=FormularioPrestamo(data=request.POST)
         if formulario_prestamo.is_valid():
-            formulario_prestamo.cleaned_data['limite']
             formulario_prestamo.save()
             return redirect("/generarprestamo/?isvalid")
         
