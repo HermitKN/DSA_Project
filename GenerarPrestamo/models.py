@@ -26,7 +26,7 @@ class Prestamo(models.Model):
     
     def __str__(self):
         if self.funcionario:
-            return f"Prestamo #{self.id} - Libro: {self.libro.cantidad} - Funcionario: {self.funcionario.username} - Fecha de devolución: {self.limite}"
+            return f"Prestamo #{self.id} - Libro: {self.libro.cantidadint} - Funcionario: {self.funcionario.username} - Fecha de devolución: {self.limite}"
         else:
             return f"Prestamo #{self.id} - Funcionario: No asignado - Fecha de devolución: {self.limite}"
 
@@ -40,7 +40,7 @@ class Prestamo(models.Model):
             self.funcionario = self._get_current_user()
         book = self.libro
         if book:
-            book.cantidad -= self.cantidad
+            book.cantidadint -= self.cantidad
             book.save()
         super(Prestamo, self).save(*args, **kwargs)
 

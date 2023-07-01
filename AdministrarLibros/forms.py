@@ -13,7 +13,7 @@ class FormularioLibro(forms.Form): #Creación de formulario con el nombre Formul
     nombre=forms.CharField(label="Nombre del Libro", max_length=50, required=True)
     autor=forms.CharField(label="Autor", max_length=50, required=True)
     tipo=forms.ChoiceField(label="Tipo", choices=Choice_Libro)
-    cantidad = forms.IntegerField(label="Copias Internas",required=True)
+    cantidadint = forms.IntegerField(label="Copias Internas",required=True)
     cantidadext = forms.IntegerField(label="Copias Externas",required=True)
     categoria=forms.CharField(label="Tags", max_length=20, required=True)
 
