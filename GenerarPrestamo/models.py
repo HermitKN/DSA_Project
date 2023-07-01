@@ -26,7 +26,7 @@ class Prestamo(models.Model):
     
     def __str__(self):
         if self.funcionario:
-            return f"Prestamo #{self.id} - Libro: {self.libro.id} - Funcionario: {self.funcionario.username} - Fecha de devolución: {self.limite}"
+            return f"Prestamo #{self.id} - Libro: {self.libro.cantidad} - Funcionario: {self.funcionario.username} - Fecha de devolución: {self.limite}"
         else:
             return f"Prestamo #{self.id} - Funcionario: No asignado - Fecha de devolución: {self.limite}"
 
