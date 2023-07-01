@@ -17,6 +17,7 @@ def administrar_libros(request):
             book.autor = FormLibro.cleaned_data['autor']
             book.tipo = FormLibro.cleaned_data['tipo']
             book.cantidad = FormLibro.cleaned_data['cantidad']
+            book.cantidadext = FormLibro.cleaned_data['cantidadext']
             book.categoria = FormLibro.cleaned_data['categoria']
             book.save() 
             return redirect("/administrarlibros/?isvalid")
