@@ -39,8 +39,11 @@ class Prestamo(models.Model):
             self.limite = self._calculate_fecha_devolucion()
             self.funcionario = self._get_current_user()
         book = self.libro
-        if book:
+        if book and self.tipo == 'Interno':
             book.cantidadint -= self.cantidad
+            book.save()
+        else:
+            book.cantidadext -= self.cantidad
             book.save()
         super(Prestamo, self).save(*args, **kwargs)
 
