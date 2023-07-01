@@ -14,6 +14,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='libro',
             name='cantidad',
-            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Cantidad de copias'),
+            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Copias Int'),
         ),
+        migrations.AlterField(
+            model_name='libro',
+            name='cantidadext',
+            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Copias Ext'),
+        ),
+        
     ]

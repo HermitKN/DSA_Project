@@ -6,6 +6,7 @@
     <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
+    <script defer src="{% static 'Biblioteca\js\opciones.js' %}"></script>
     &nbsp;
     {% if user.is_authenticated %}
         <div class="opciones">
@@ -13,26 +14,38 @@
                 <h1>¿Que actividad desea realizar?</h1>
             </div>
             <div class="box2">
-                <button class="ops" name="Ingresar">
-                    Ingresar
-                </button>
-                <button class="ops">
-                    Eliminar
-                </button>
-                <button class="ops">
-                    Editar
-                </button>
-                <button class="ops">
+                    <button onclick="MostrarIngresar()" class="ops">
+                        Ingresar
+                    </button>
+                    <button onclick="MostrarEliminar()" class="ops">
+                        Eliminar
+                    </button>
+                    <button onclick="MostrarEditar()" class="ops">
+                        Editar
+                    </button>
+                    <button onclick="MostrarVisualizar()" class="ops">
+                        Visualizar
+                    </button>
+            </div>
+        </div>
+    {% else %}
+        <div class="opciones">
+            <div class="box">
+                <h1>¿Que actividad desea realizar?</h1>
+            </div>
+            <div class="box2">
+                <button onclick="MostrarVisualizar()" class="ops">
                     Visualizar
                 </button>
             </div>
-        </div>
-
+        </div>        
+    {% endif %}
+        
         {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
             <p style="color: red; margin-left: 300px;">Libro ingresado correctamente</p>
         {% endif %}
 
-        <center><div class="ingresar" style="width: 50%;">
+        <center><div id = "Ingresar" class="ingresar" style="width: 50%; display: none;">
             <h2>Se esta ingresando un nuevo Libro/Tesis</h2>
             <h3>Por favor complete los campos:</h3>
             <form method="POST">
@@ -42,13 +55,16 @@
             </form>
         </div></center>
 
-        <div class="visualizar"></div>
+        <div id="Visualizar" class="visualizar" style="display: none;">
+            <h1>Esto es visualizar</h1>
+        </div>
 
-        <div class="eliminar"></div>
+        <div id="Eliminar" class="eliminar" style="display: none;">
+            <h1>Esto es Eliminar</h1>
+        </div>
 
-        <div class="editar"></div>
-    {% else %}
-        <h3 style="text-align: center">Perdone pero debe logearse</h3>
-    {% endif %}
+        <div id="Editar" class="editar" style="display: none;">
+            <h1>Esto es Editar</h1>
+        </div>
     &nbsp;
 {% endblock %}

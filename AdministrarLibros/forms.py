@@ -9,11 +9,12 @@ Choice_Libro = [
 class FormularioLibro(forms.Form): #Creación de formulario con el nombre FormularioLibro
 
     # Campos del formulario
-    id=forms.CharField(label="Id", max_length=20, required=True)
+    id=forms.CharField(label="Cota", max_length=20, required=True)
     nombre=forms.CharField(label="Nombre del Libro", max_length=50, required=True)
     autor=forms.CharField(label="Autor", max_length=50, required=True)
     tipo=forms.ChoiceField(label="Tipo", choices=Choice_Libro)
-    cantidad = forms.IntegerField(label="Numero de Copias",required=True)
+    cantidad = forms.IntegerField(label="Copias Internas",required=True)
+    cantidadext = forms.IntegerField(label="Copias Externas",required=True)
     categoria=forms.CharField(label="Tags", max_length=20, required=True)
 
     def clean_id(self):
