@@ -107,7 +107,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for libro in Libros %}
+                    {% for libro in libros %}
                         <tr>
                             <td>{{libro.id}}</td>
                             <td>{{libro.nombre}}</td>
@@ -117,7 +117,7 @@
                             <td>{{libro.cantidadext}}</td>
                             <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
                             <td>{{libro.categoria}}</td>
-                            <td>IconoEliminar</td>
+                            <td><button><img src="{% static 'Biblioteca/imgprojts/recycle-bin.png' %}" alt="Eliminar Elemento" style="height: 25px;"></button></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -141,7 +141,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for libro in Libros %}
+                    {% for libro in libros %}
                         <tr>
                             <td>{{libro.id}}</td>
                             <td>{{libro.nombre}}</td>
