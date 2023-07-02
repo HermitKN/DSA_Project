@@ -23,3 +23,11 @@ def notas_prestamo(request):
     notas=Prestamo.objects.all()
     return render(request, "notasprestamo/notasprestamo.html", {'notas':notas})
 
+def cambiar_penalizacion(request, prestamo_id):
+    #if request.method=="POST":
+    prestamo = Prestamo.objects.get(id=prestamo_id)
+    
+    prestamo.penalizacion = 'Penalización semanal'
+    prestamo.save()
+    return redirect('/notasprestamo/')
+

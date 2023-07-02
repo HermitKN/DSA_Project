@@ -21,6 +21,7 @@
                     <th>Funcionario</th>
                     <th>Fecha de generación del préstamo</th>
                     <th>Fecha límite de devolución</th>
+                    <th>Penalización</th>
                     <th>Devuelto</th>
                 </tr>
             </thead>
@@ -35,16 +36,26 @@
                         <td>{{nota.funcionario}}</td>
                         <td>{{nota.fecha}}</td>
                         <td>{{nota.limite}}</td>
+                        <td>
+                            {{nota.penalizacion}}
+                            {% if not nota.devuelto and nota.penalizacion == 'No hay penalización' %}
+                                <form action="{% url 'CambiarPenalizacion' nota.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit">Penalización</button>
+                                </form>
+                            {% endif %}
+                        </td>
                         <td>{{nota.devuelto}}</td>
                         <td>
-                            {% if not nota.devuelto %}
+                            {% if not nota.devuelto and nota.penalizacion == 'No hay penalización' %}
                                 <form method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="prestamo_id" value="{{nota.id}}">
                                     <button type="submit" class="btn btn-success">Cambiar</button>
                                 </form>
+                            {% elif not nota.devuelto and  nota.penalizacion == 'Penalización semanal'%}
+                                <h5 style="color: red;">No devuelto!</h5>
                             {% else %}
-                                
                                 <h5 style="color: red;">Ya devuelto!</h5>
                             {% endif %}
                         </td>

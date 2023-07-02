@@ -22,6 +22,7 @@ class Prestamo(models.Model):
     limite=models.DateField(editable=False, verbose_name="Fecha límite de Devolución")
     fecha=models.DateTimeField(auto_now_add=True)
     funcionario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, editable=False)
+    penalizacion = models.CharField(max_length=50, default='No hay penalización')
     devuelto = models.BooleanField(default=False, editable=False, verbose_name="Devuetlo")
     
     def __str__(self):
