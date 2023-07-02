@@ -5,8 +5,10 @@ from .models import Libro
 # Create your views here.
 
 def administrar_libros(request):
-
+    #Para el Formulario
     FormLibro = FormularioLibro()
+    #Para el Listado
+    Libros = Libro.objects.all()
 
     if request.method=="POST":
         FormLibro = FormularioLibro(data=request.POST) 
@@ -24,4 +26,4 @@ def administrar_libros(request):
         
     books=Libro.objects.last()
 
-    return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'books': books})
+    return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'books': books, 'Libros': Libros})

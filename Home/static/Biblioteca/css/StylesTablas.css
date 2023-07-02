@@ -1,0 +1,45 @@
+.visualizar table, .eliminar table, .editar table{
+    margin: auto;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #11212f;
+    text-align: center;
+    border-radius: 1em;
+}
+.visualizar th, .visualizar td, .eliminar th, .eliminar td, .editar th, .editar td{
+    padding: 1em;
+    border: solid 1px white;
+}
+
+.visualizar th, .eliminar th, .editar th{
+    color: #DB9321;
+}
+.visualizar td, .eliminar td, .editar td{
+    background-color: #40A6FF;
+}
+
+.ingresar{
+    width: 50%;
+    background-color: #11212f;
+    border-radius: 2em;
+}
+.ingresar h2{
+    text-align: left;
+    margin-left: 25px;
+    padding-top: 25px;
+    color: aliceblue;
+}
+.ingresar h3{
+    color: rgb(25, 162, 13);
+    text-align: left;
+    margin-left: 10%;
+}
+
+.ingresar th, .ingresar td {
+    color: #DB9321;
+}
+.ingresar-button{
+    height: 50px;
+    border-radius: 1em;
+    margin-bottom: 10px;
+    background-color: rgb(25, 162, 13);;
+}

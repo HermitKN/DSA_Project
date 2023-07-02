@@ -6,6 +6,7 @@
     <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesTablas.css' %}">
     <script defer src="{% static 'Biblioteca\js\opciones.js' %}"></script>
     &nbsp;
     {% if user.is_authenticated %}
@@ -45,18 +46,48 @@
             <p style="color: red; margin-left: 300px;">Libro ingresado correctamente</p>
         {% endif %}
 
-        <center><div id = "Ingresar" class="ingresar" style="width: 50%; display: none;">
-            <h2>Se esta ingresando un nuevo Libro/Tesis</h2>
+        <center><div id = "Ingresar" class="ingresar" style="display: none;">
+            <h2>Ingresando Nuevo Libro/Tesis</h2>
             <h3>Por favor complete los campos:</h3>
             <form method="POST">
                 {% csrf_token %}
                 <table>{{ formL.as_table }}</table>
-                <button type="submit">Ingresar al sistema</button>
+                <button class="ingresar-button" type="submit"><strong>Ingresar Libro</strong></button>
             </form>
         </div></center>
 
         <div id="Visualizar" class="visualizar" style="display: none;">
-            <h1>Esto es visualizar</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cota</th>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Tipo</th>
+                        <th>Cantidad Interna</th>
+                        <th>Cantidad Externa</th>
+                        <th>Cantidad Total</th>
+                        <th>Categoria/Tags</th>
+                        <th>Fecha de Ingreso</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in Libros %}
+                        <tr>
+                            <td>{{libro.id}}</td>
+                            <td>{{libro.nombre}}</td>
+                            <td>{{libro.autor}}</td>
+                            <td>{{libro.tipo}}</td>
+                            <td>{{libro.cantidadint}}</td>
+                            <td>{{libro.cantidadext}}</td>
+                            <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
+                            <td>{{libro.categoria}}</td>
+                            <td>{{libro.fecha}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
 
         <div id="Eliminar" class="eliminar" style="display: none;">
