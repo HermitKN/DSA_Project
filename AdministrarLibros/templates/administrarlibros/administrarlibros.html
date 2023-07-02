@@ -91,11 +91,71 @@
         </div>
 
         <div id="Eliminar" class="eliminar" style="display: none;">
-            <h1>Esto es Eliminar</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cota</th>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Tipo</th>
+                        <th>Cantidad Interna</th>
+                        <th>Cantidad Externa</th>
+                        <th>Cantidad Total</th>
+                        <th>Categoria/Tags</th>
+                        <th>Eliminar</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in Libros %}
+                        <tr>
+                            <td>{{libro.id}}</td>
+                            <td>{{libro.nombre}}</td>
+                            <td>{{libro.autor}}</td>
+                            <td>{{libro.tipo}}</td>
+                            <td>{{libro.cantidadint}}</td>
+                            <td>{{libro.cantidadext}}</td>
+                            <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
+                            <td>{{libro.categoria}}</td>
+                            <td>IconoEliminar</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
 
         <div id="Editar" class="editar" style="display: none;">
-            <h1>Esto es Editar</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cota</th>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Tipo</th>
+                        <th>Cantidad Interna</th>
+                        <th>Cantidad Externa</th>
+                        <th>Cantidad Total</th>
+                        <th>Categoria/Tags</th>
+                        <th>Editar</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in Libros %}
+                        <tr>
+                            <td>{{libro.id}}</td>
+                            <td>{{libro.nombre}}</td>
+                            <td>{{libro.autor}}</td>
+                            <td>{{libro.tipo}}</td>
+                            <td>{{libro.cantidadint}}</td>
+                            <td>{{libro.cantidadext}}</td>
+                            <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
+                            <td>{{libro.categoria}}</td>
+                            <td>IconoEditar</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     &nbsp;
 {% endblock %}
