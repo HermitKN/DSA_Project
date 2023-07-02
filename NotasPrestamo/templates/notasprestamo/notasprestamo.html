@@ -8,12 +8,10 @@
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesTablas.css' %}">
     <script defer src="{% static 'Biblioteca\js\opciones.js' %}"></script>
-    <head>
-        <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesTable.css' %}">
-    </head>
+    
     &nbsp;
     {% if user.is_authenticated %}
-        <div class="visualizar" style="display: none;">
+        <div class="visualizar">
             <table style="margin: auto;">
                 <thead>
                     <tr>
