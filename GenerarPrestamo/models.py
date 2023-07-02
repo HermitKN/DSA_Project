@@ -43,6 +43,7 @@ class Prestamo(models.Model):
         super(Prestamo, self).save(*args, **kwargs)
         self.actualizar_cantidad_libro()
         self.actualizar_estatus()
+        self.aumentar_devoluciones()
         
     def actualizar_cantidad_libro(self):
         
@@ -55,6 +56,12 @@ class Prestamo(models.Model):
         else:
             self.libro.cantidadext -= self.cantidad
             self.libro.save()
+            
+    def aumentar_devoluciones(self):
+        
+        if self.devuelto:
+            self.estudiante.devoluciones += 1
+            self.estudiante.save() 
             
     def actualizar_estatus(self):
         
