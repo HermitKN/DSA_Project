@@ -1,6 +1,7 @@
 from django import forms
 from .models import Prestamo
 from AdministrarLibros.models import Libro
+from AdministrarEstudiantes.models import Estudiante
 from django.core.exceptions import ValidationError
 
 class FormularioPrestamo(forms.ModelForm):
@@ -9,7 +10,9 @@ class FormularioPrestamo(forms.ModelForm):
         super(FormularioPrestamo, self).__init__(*args, **kwargs)
         self.fields['libro'].queryset = Libro.objects.exclude(
             cantidadint=0, cantidadext=0
-        )        
+        )
+        self.fields['estudiante'].queryset = Estudiante.objects.filter(estatus='Habilitado') 
+               
     def clean(self):
         cleaned_data = super(FormularioPrestamo, self).clean()
         libro = cleaned_data.get('libro')

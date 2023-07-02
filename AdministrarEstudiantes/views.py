@@ -18,6 +18,13 @@ def administrar_estudiantes(request):
             estudiante.save() # Método que finalmente guarda la información en la base de datos
             return redirect("/administrarestudiantes/?isvalid") # Al final del if se redirecciona a otra url para confirmar que se ha limpiado y enviado la información a la base de datos
         
-    estudiantes=Estudiante.objects.first()
+    estudiantes=Estudiante.objects.all()
     # Se renderiza la plantilla con todos los campos del formulario creado
     return render(request, "administrarestudiantes/administrarestudiantes.html", {'myFormE':formulario_estudiantes, 'estudiantes': estudiantes})
+
+def cambiar_estatus(request, estudiante_id):
+    estudiante = Estudiante.objects.get(id=estudiante_id)
+    
+    estudiante.estatus = 'Deshabilitado'
+    estudiante.save()
+    return redirect('/administrarestudiantes/')

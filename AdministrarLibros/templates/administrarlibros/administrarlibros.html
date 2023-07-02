@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
+    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> 
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesTablas.css' %}">
@@ -51,7 +51,7 @@
             <h3>Por favor complete los campos:</h3>
             <form method="POST">
                 {% csrf_token %}
-                <table>{{ formL.as_table }}</table>
+                <table>{{formL.as_table}}</table>
                 <button class="ingresar-button" type="submit"><strong>Ingresar Libro</strong></button>
             </form>
         </div></center>
@@ -73,7 +73,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for libro in Libros %}
+                    {% for libro in libros %}
                         <tr>
                             <td>{{libro.id}}</td>
                             <td>{{libro.nombre}}</td>

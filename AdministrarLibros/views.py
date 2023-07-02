@@ -8,7 +8,6 @@ def administrar_libros(request):
     #Para el Formulario
     FormLibro = FormularioLibro()
     #Para el Listado
-    Libros = Libro.objects.all()
 
     if request.method=="POST":
         FormLibro = FormularioLibro(data=request.POST) 
@@ -24,6 +23,6 @@ def administrar_libros(request):
             book.save() 
             return redirect("/administrarlibros/?isvalid")
         
-    books=Libro.objects.last()
+    libros=Libro.objects.all()
 
-    return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'books': books, 'Libros': Libros})
+    return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': libros})

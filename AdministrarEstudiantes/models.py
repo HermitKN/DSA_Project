@@ -9,7 +9,8 @@ class Estudiante(models.Model):# Creación de la tabla con el nombre Estudiante
     email=models.EmailField(max_length=50, verbose_name="Correo Electrónico")
     direccion=models.CharField(max_length=50, verbose_name="Dirección del Estudiante")
     tfno=models.CharField(max_length=20, verbose_name="Número Telefónico")
-    fecha=models.DateTimeField(auto_now_add=True, verbose_name="Fecha del Registro")# En este campo, con el auto_now_add se permitirá que la información del tiempo se genere automáticamente, por lo tanto no contará para el formulario al momento de agregar un estudiante
+    fecha=models.DateTimeField(auto_now_add=True, verbose_name="Fecha del Registro")
+    estatus = models.CharField(max_length=30, default='Habilitado')
 
     def __str__(self):
         return self.id
