@@ -63,6 +63,7 @@
                         <th>Teléfono</th>
                         <th>Fecha de ingreso al sistema</th>
                         <th>Correo electrónico</th>
+                        <th>Devoluciones</th>
                         <th>Estatus</th>
                     </tr>
                 </thead>
@@ -75,6 +76,7 @@
                             <td>{{estudiante.tfno}}</td>
                             <td>{{estudiante.fecha}}</td>
                             <td>{{estudiante.email}}</td>
+                            <td>{{estudiante.devoluciones}}</td>
                             <td>{{estudiante.estatus}}</td>
                             <td>
                                 {% if estudiante.estatus == 'Habilitado' %}
