@@ -36,6 +36,18 @@
                         <td>{{nota.fecha}}</td>
                         <td>{{nota.limite}}</td>
                         <td>{{nota.devuelto}}</td>
+                        <td>
+                            {% if not nota.devuelto %}
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="prestamo_id" value="{{nota.id}}">
+                                    <button type="submit" class="btn btn-success">Cambiar</button>
+                                </form>
+                            {% else %}
+                                
+                                <h5 style="color: red;">Ya devuelto!</h5>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

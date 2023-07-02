@@ -38,14 +38,21 @@ class Prestamo(models.Model):
         if not self.id:  # Verifica si el objeto es nuevo
             self.limite = self._calculate_fecha_devolucion()
             self.funcionario = self._get_current_user()
-        book = self.libro
-        if book and self.tipo == 'Interno':
-            book.cantidadint -= self.cantidad
-            book.save()
-        else:
-            book.cantidadext -= self.cantidad
-            book.save()
+        
         super(Prestamo, self).save(*args, **kwargs)
+        self.actualizar_cantidad_libro()
+        
+    def actualizar_cantidad_libro(self):
+        
+        if self.devuelto:
+            return
+        
+        if self.tipo == 'Interno':
+            self.libro.cantidadint -= self.cantidad
+            self.libro.save()
+        else:
+            self.libro.cantidadext -= self.cantidad
+            self.libro.save()
 
     def _get_current_user(self):
         User = get_user_model()
