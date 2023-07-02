@@ -22,7 +22,7 @@ class Prestamo(models.Model):
     limite=models.DateField(editable=False, verbose_name="Fecha límite de Devolución")
     fecha=models.DateTimeField(auto_now_add=True)
     funcionario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, editable=False)
-    penalizacion = models.CharField(max_length=50, default='No hay penalización')
+    penalizacion = models.CharField(max_length=50, default='Sin penalización')
     devuelto = models.BooleanField(default=False, editable=False, verbose_name="Devuetlo")
     
     def __str__(self):
@@ -42,6 +42,7 @@ class Prestamo(models.Model):
         
         super(Prestamo, self).save(*args, **kwargs)
         self.actualizar_cantidad_libro()
+        self.actualizar_estatus()
         
     def actualizar_cantidad_libro(self):
         
@@ -54,6 +55,15 @@ class Prestamo(models.Model):
         else:
             self.libro.cantidadext -= self.cantidad
             self.libro.save()
+            
+    def actualizar_estatus(self):
+        
+        if self.penalizacion == 'Penalización semanal':
+            self.estudiante.estatus = 'Deshabilitado'
+            self.estudiante.save()
+        else:
+            self.estudiante.estatus = 'Habilitado'
+            self.estudiante.save()
 
     def _get_current_user(self):
         User = get_user_model()

@@ -11,7 +11,7 @@ class FormularioPrestamo(forms.ModelForm):
         self.fields['libro'].queryset = Libro.objects.exclude(
             cantidadint=0, cantidadext=0
         )
-        self.fields['estudiante'].queryset = Estudiante.objects.filter(estatus='Habilitado') 
+        self.fields['estudiante'].queryset = Estudiante.objects.exclude(estatus='Deshabilitado') 
                
     def clean(self):
         cleaned_data = super(FormularioPrestamo, self).clean()

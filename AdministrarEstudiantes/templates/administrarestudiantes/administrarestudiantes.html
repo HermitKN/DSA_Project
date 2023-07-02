@@ -82,6 +82,11 @@
                                         {% csrf_token %}
                                         <button type="submit">Deshabilitar</button>
                                     </form>
+                                {% else %}
+                                    <form action="{% url 'CambiarEstatus' estudiante.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit">Habilitar</button>
+                                    </form>
                                 {% endif %}
                             </td>
                         </tr>

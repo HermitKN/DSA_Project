@@ -38,16 +38,16 @@
                         <td>{{nota.limite}}</td>
                         <td>
                             {{nota.penalizacion}}
-                            {% if not nota.devuelto and nota.penalizacion == 'No hay penalización' %}
+                            {% if not nota.devuelto and nota.penalizacion == 'Sin penalización' %}
                                 <form action="{% url 'CambiarPenalizacion' nota.id %}" method="POST">
                                     {% csrf_token %}
-                                    <button type="submit">Penalización</button>
+                                    <button type="submit">Penalizar</button>
                                 </form>
                             {% endif %}
                         </td>
                         <td>{{nota.devuelto}}</td>
                         <td>
-                            {% if not nota.devuelto and nota.penalizacion == 'No hay penalización' %}
+                            {% if not nota.devuelto and nota.penalizacion == 'Sin penalización' %}
                                 <form method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="prestamo_id" value="{{nota.id}}">
@@ -56,7 +56,7 @@
                             {% elif not nota.devuelto and  nota.penalizacion == 'Penalización semanal'%}
                                 <h5 style="color: red;">No devuelto!</h5>
                             {% else %}
-                                <h5 style="color: red;">Ya devuelto!</h5>
+                                <h5 style="color: green;">Ya devuelto!</h5>
                             {% endif %}
                         </td>
                     </tr>

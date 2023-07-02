@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import FormularioEstudiante # Importamos el formulario de forms.py
-from .models import Estudiante # Importamos la tabla de models.py
+from .forms import FormularioEstudiante 
+from .models import Estudiante 
 # Create your views here.
 
 def administrar_estudiantes(request):
@@ -24,7 +24,9 @@ def administrar_estudiantes(request):
 
 def cambiar_estatus(request, estudiante_id):
     estudiante = Estudiante.objects.get(id=estudiante_id)
-    
-    estudiante.estatus = 'Deshabilitado'
+    if estudiante.estatus == 'Habilitado':
+        estudiante.estatus = 'Deshabilitado'
+    else:
+        estudiante.estatus = 'Habilitado'
     estudiante.save()
     return redirect('/administrarestudiantes/')
