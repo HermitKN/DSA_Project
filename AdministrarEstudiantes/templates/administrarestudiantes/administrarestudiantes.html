@@ -18,7 +18,11 @@
                 <button id="BotonIngresar" onclick="MostrarIngresar()" class="ops">
                     Ingresar
                 </button>
+<<<<<<< HEAD
                 <button id="BotonEditar" onclick="MostrarEditar()" class="ops">
+=======
+                <button onclick="MostrarEliminar()" class="ops">
+>>>>>>> 3af159479c808855e48091d008ee9fd408bd9de7
                     Editar
                 </button>
                 <button id="BotonVisualizar" onclick="MostrarVisualizar()" class="ops">
@@ -52,6 +56,35 @@
                 <button class="ingresar-button" type="submit"><strong>Ingresar Estudiante</strong></button> 
             </form>
         </div></center>
+
+        <div id="Eliminar" class="editar" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Fecha de ingreso al sistema</th>
+                        <th>Correo electrónico</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for estudiante in estudiantes %}
+                        <tr>
+                            <td>{{estudiante.id}}</td>
+                            <td>{{estudiante.nombre}}</td>
+                            <td>{{estudiante.direccion}}</td>
+                            <td>{{estudiante.tfno}}</td>
+                            <td>{{estudiante.fecha}}</td>
+                            <td>{{estudiante.email}}</td>
+                            <td>IconoEditar</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
         <div id="Visualizar" class="visualizar" style="display: none;">
             <table>
@@ -91,35 +124,6 @@
                                     </form>
                                 {% endif %}
                             </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <div id="Editar" class="editar" style="display: none;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Cédula</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Teléfono</th>
-                        <th>Fecha de ingreso al sistema</th>
-                        <th>Correo electrónico</th>
-                        <th>Editar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for estudiante in estudiantes %}
-                        <tr>
-                            <td>{{estudiante.id}}</td>
-                            <td>{{estudiante.nombre}}</td>
-                            <td>{{estudiante.direccion}}</td>
-                            <td>{{estudiante.tfno}}</td>
-                            <td>{{estudiante.fecha}}</td>
-                            <td>{{estudiante.email}}</td>
-                            <td>IconoEditar</td>
                         </tr>
                     {% endfor %}
                 </tbody>
