@@ -26,3 +26,17 @@ def administrar_libros(request):
     libros=Libro.objects.all()
 
     return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': libros})
+
+def eliminar_libro(request, id):
+
+    try:
+        Libros = Libro.objects.get(id = id)
+        Libros.delete()
+        Libros = Libro.objects.all()
+        FormLibro = FormularioLibro()
+        return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros})
+    except:
+        Libros = Libro.objects.all()
+        FormLibro = FormularioLibro()
+        return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros})
+        

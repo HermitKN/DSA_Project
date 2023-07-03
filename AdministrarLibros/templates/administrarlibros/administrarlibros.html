@@ -15,16 +15,16 @@
                 <h1>¿Que actividad desea realizar?</h1>
             </div>
             <div class="box2">
-                    <button onclick="MostrarIngresar()" class="ops">
+                    <button id="BotonIngresar" onclick="MostrarIngresar()" class="ops">
                         Ingresar
                     </button>
-                    <button onclick="MostrarEliminar()" class="ops">
+                    <button id="BotonEliminar" onclick="MostrarEliminar()" class="ops">
                         Eliminar
                     </button>
-                    <button onclick="MostrarEditar()" class="ops">
+                    <button id="BotonEditar" onclick="MostrarEditar()" class="ops">
                         Editar
                     </button>
-                    <button onclick="MostrarVisualizar()" class="ops">
+                    <button id="BotonVisualizar" onclick="MostrarVisualizar()" class="ops">
                         Visualizar
                     </button>
             </div>
@@ -35,7 +35,7 @@
                 <h1>¿Que actividad desea realizar?</h1>
             </div>
             <div class="box2">
-                <button onclick="MostrarVisualizar()" class="ops">
+                <button id="BotonVisualizar" onclick="MostrarVisualizar()" class="ops">
                     Visualizar
                 </button>
             </div>
@@ -117,7 +117,13 @@
                             <td>{{libro.cantidadext}}</td>
                             <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
                             <td>{{libro.categoria}}</td>
-                            <td><button><img src="{% static 'Biblioteca/imgprojts/recycle-bin.png' %}" alt="Eliminar Elemento" style="height: 25px;"></button></td>
+                            <td><form action="{% url 'Eliminarlibro' libro.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" >
+                                        <img src="{% static 'Biblioteca/imgprojts/recycle-bin.png' %}" alt="Eliminar Elemento" style="height: 25px;">
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
