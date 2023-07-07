@@ -23,6 +23,7 @@ class Prestamo(models.Model):
     fecha=models.DateTimeField(auto_now_add=True)
     funcionario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, editable=False)
     penalizacion = models.CharField(max_length=50, default='Sin penalización')
+    cantidad_devuelta = models.PositiveIntegerField(default=0,verbose_name="Cantidad Devuelta")
     devuelto = models.BooleanField(default=False, editable=False, verbose_name="Devuetlo")
     
     def __str__(self):
@@ -47,7 +48,7 @@ class Prestamo(models.Model):
         
     def actualizar_cantidad_libro(self):
         
-        if self.devuelto:
+        if self.devuelto or self.penalizacion == 'Penalización semanal':
             return
         
         if self.tipo == 'Interno':
