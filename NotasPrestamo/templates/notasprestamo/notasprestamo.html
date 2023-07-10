@@ -45,7 +45,7 @@
                                 <form method="POST">
                                     {% csrf_token %}
                                     <td><input type="number" name="cantidad_devuelta" value="{{ nota.cantidad_devuelta }}"min="0" max="{{ nota.cantidad }}" required></td>
-                                    <td>{{nota.devuelto}}</td>
+                                    <td></td>
                                     <td>
                                         <input type="hidden" name="prestamo_id" value="{{nota.id}}">
                                         <button type="submit" class="btn btn-success">Actualizar</button>
@@ -54,11 +54,11 @@
                             {% elif not nota.devuelto and  nota.penalizacion == 'Penalización semanal'%} 
                                 <td>{{ nota.cantidad_devuelta }}</td>
                                 <td>{{nota.devuelto}}</td>
-                                <td><h5 style="color: red;">No devuelto!</h5></td>
+                                <td><h5 style="color: red;">Devolución Incompleta!</h5></td>
                             {% else %}
                                 <td>{{ nota.cantidad_devuelta }}</td>
                                 <td>{{nota.devuelto}}</td>
-                                <td><h5 style="color: green;">Ya devuelto!</h5></td>
+                                <td><h5 style="color: green;">Devolución Completa!</h5></td>
                             {% endif %}           
                         </tr>
                     {% endfor %}
