@@ -11,6 +11,7 @@ class Libro(models.Model):# Tabla con el nombre Libro
     cantidadint=models.PositiveIntegerField(validators=[MinValueValidator(1)], verbose_name="Copias Internas")
     cantidadext=models.PositiveIntegerField(validators=[MinValueValidator(1)], verbose_name="Copias Externas")
     categoria=models.CharField(max_length=20, verbose_name="Categoria del Libro")
+    descripcion = models.CharField(max_length=50, verbose_name="Descripcion del Libro")
     fecha=models.DateTimeField(auto_now_add=True, verbose_name="Fecha del Ingreso")
 
     def __str__(self):
