@@ -10,11 +10,28 @@
     <script defer src="{% static 'Biblioteca\js\opciones.js' %}"></script>
     &nbsp;
     {% if user.is_authenticated %}
-        <div class="opciones">
-            <div class="box">
-                <h1>¿Que actividad desea realizar?</h1>
-            </div>
-            <div class="box2">
+        {% if user.groups.all %}
+            {% for group in user.groups.all %}
+                {% if group.name == "WorkerTeam" %}
+                    <div class="opciones">
+                        <div class="box">
+                            <h1>¿Que actividad desea realizar?</h1>
+                        </div>
+                        <div class="box2">
+                            <button id="BotonVisualizar" onclick="MostrarVisualizarA()" class="ops">
+                                Visualizar
+                            </button>
+                        </div>
+                    </div>    
+                    <h3 style="text-align: center">Solo tienes acceso a la visualización de los libros.</h3>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="opciones">
+                <div class="box">
+                    <h1>¿Que actividad desea realizar?</h1>
+                </div>
+                <div class="box2">
                     <button id="BotonIngresar" onclick="MostrarIngresar()" class="ops">
                         Ingresar
                     </button>
@@ -27,8 +44,10 @@
                     <button id="BotonVisualizar" onclick="MostrarVisualizar()" class="ops">
                         Visualizar
                     </button>
+                </div>
             </div>
-        </div>
+        {% endif %}
+        
     {% else %}
         <div class="opciones">
             <div class="box">

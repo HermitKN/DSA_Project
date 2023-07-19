@@ -3,8 +3,19 @@ from django.views.generic import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User, Group
 
 # Create your views here.
+
+# Función para asignar automáticamente a los nuevos usuarios al grupo "WorkerTeam"
+@receiver(post_save, sender=User)
+def add_user_to_workerteam(sender, instance, created, **kwargs):
+    if created:
+        worker_group = Group.objects.get(name='WorkerTeam')
+        instance.groups.add(worker_group)
+
 
 class Sign_Up(View): # Registro
 
@@ -24,6 +35,8 @@ class Sign_Up(View): # Registro
                 messages.error(request, form.error_messages[msg]) # Muestra mensajes de error cuando el formulario no es válido
             return render(request, "signup/signup.html",{"form":form}) # Renderiza el signup y su formulario
 
+# Registrando la señal para el evento post_save del modelo User
+post_save.connect(add_user_to_workerteam, sender=User)
 
 def log_out(request): # Cerrar sesión
     logout(request)
