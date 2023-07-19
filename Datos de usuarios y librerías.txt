@@ -2,8 +2,11 @@ Administrador
 	User: Admin
 	password: 1library1
 
-Trabajador
+Trabajadores:
 	User: Worker
+	password: 12book12
+
+	User: Worker2
 	password: 12book12
 
 Libreías a instalar:
