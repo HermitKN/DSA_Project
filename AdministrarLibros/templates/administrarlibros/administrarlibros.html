@@ -62,7 +62,7 @@
     {% endif %}
         
         {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
-            <p style="color: red; margin-left: 300px;">Libro ingresado correctamente</p>
+            <script> alert('Agregado correctamente')</script>
         {% endif %}
 
         <center><div id = "Ingresar" class="ingresar" style="display: none;">
@@ -87,6 +87,7 @@
                         <th>Cantidad Externa</th>
                         <th>Cantidad Total</th>
                         <th>Categoria/Tags</th>
+                        <th>Descripcion</th>
                         <th>Fecha de Ingreso</th>
                         
                     </tr>
@@ -136,7 +137,6 @@
                             <td>{{libro.cantidadint}}</td>
                             <td>{{libro.cantidadext}}</td>
                             <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
-                            <td>{{libro.descripcion}}</td>
                             <td>{{libro.categoria}}</td>
                             <td><form action="{% url 'Eliminarlibro' libro.id %}" method="POST">
                                     {% csrf_token %}
@@ -163,6 +163,7 @@
                         <th>Cantidad Externa</th>
                         <th>Cantidad Total</th>
                         <th>Categoria/Tags</th>
+                        <th>Descripcion</th>
                         <th>Editar</th>
                         
                     </tr>
@@ -177,9 +178,15 @@
                             <td>{{libro.cantidadint}}</td>
                             <td>{{libro.cantidadext}}</td>
                             <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
-                            <td>{{libro.descripcion}}</td>
                             <td>{{libro.categoria}}</td>
-                            <td>IconoEditar</td>
+                            <td>{{libro.descripcion}}</td>
+                            <td><form action="{% url 'Editarlibro' libro.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" >
+                                    <img src="{% static 'Biblioteca/imgprojts/edit.png' %}" alt="Editar Elemento" style="height: 25px;">
+                                </button>
+                            </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

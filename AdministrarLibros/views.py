@@ -40,4 +40,14 @@ def eliminar_libro(request, id):
         Libros = Libro.objects.all()
         FormLibro = FormularioLibro()
         return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros})
+    
+def editar_libros(request, id):
+
+    try:
+        Libros = Libro.objects.get(id = id)
+        return render(request, "administrarlibros/editarlibro.html", {'libros': Libros})
+    except:
+        Libros = Libro.objects.all()
+        FormLibro = FormularioLibro()
+        return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros})
         

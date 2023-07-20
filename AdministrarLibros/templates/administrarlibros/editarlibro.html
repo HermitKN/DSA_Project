@@ -1,0 +1,41 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesTablas.css' %}">
+    <script defer src="{% static 'Biblioteca\js\opciones.js' %}"></script>
+    &nbsp;
+
+    {% if user.is_authenticated %}
+        {% if user.groups.all %}
+            {% for group in user.groups.all %}
+                {% if group.name == "WorkerTeam" %}
+                <div class="opciones">
+                    <div class="box">
+                        <h1>Necesita ser Administrador para poder utilizar esta funcion</h1>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="opciones">
+                <div class="box">
+                    <h1>¿Que actividad desea realizar?</h1>
+                </div>
+                <div class="box2">
+                    <button>{{libros.nombre}}</button>
+                </div>
+            </div>
+        {% endif %}
+        
+    {% else %}
+        <div class="opciones">
+            <div class="box">
+                <h1>Necesita ser Administrador para poder utilizar esta funcion</h1>
+            </div>
+        </div>        
+    {% endif %}
+{% endblock %}
