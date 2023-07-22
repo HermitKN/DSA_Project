@@ -14,7 +14,7 @@
     
     &nbsp;
     {% if user.is_authenticated %}
-        <div class="visualizar">
+        <div class="table-responsive">
             <div class="filters">
                 <a {% if request.GET.penalizados %}class="active" {% endif %}href="?penalizados=1">Estudiantes penalizados</a>
                 <a {% if request.GET.no_penalizados %}class="active" {% endif %}href="?no_penalizados=1">Estudiantes no penalizados</a>

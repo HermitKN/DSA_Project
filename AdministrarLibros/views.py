@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import FormularioLibro
 from .models import Libro
+from django.http.response import JsonResponse
 
 # Create your views here.
 
@@ -27,6 +28,11 @@ def administrar_libros(request):
     libros=Libro.objects.all()
 
     return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': libros})
+
+def dataTable(_request):
+
+    libros=list(Libro.objects.values())
+    return JsonResponse({'libros': libros})
 
 def eliminar_libro(request, id):
 
@@ -88,3 +94,4 @@ def libro_editado(request, id):
         
     libros=Libro.objects.all()
     return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': libros, 'Msm': 'Actualizacion completa'})
+

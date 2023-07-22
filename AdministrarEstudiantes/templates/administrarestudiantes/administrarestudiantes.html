@@ -82,7 +82,7 @@
             </table>
         </div>
 
-        <div id="Visualizar" class="visualizar" style="display: none;">
+        <div id="Visualizar" class="table-responsive" style="display: none;">
             <table>
                 <thead>
                     <tr>
@@ -99,15 +99,15 @@
                 <tbody>
                     {% for estudiante in estudiantes %}
                         <tr>
-                            <td>{{estudiante.id}}</td>
-                            <td>{{estudiante.nombre}}</td>
-                            <td>{{estudiante.direccion}}</td>
-                            <td>{{estudiante.tfno}}</td>
-                            <td>{{estudiante.fecha}}</td>
-                            <td>{{estudiante.email}}</td>
-                            <td>{{estudiante.devoluciones}}</td>
-                            <td>{{estudiante.estatus}}</td>
-                            <td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.id}}</td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.nombre}}</td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.direccion}}</td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.tfno}}</td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.fecha}}</td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.email}}</td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.devoluciones}}</td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.estatus}}</td>
+                            <td style="text-align: center; border-bottom: 1px solid white;">
                                 {% if estudiante.estatus == 'Habilitado' %}
                                     <form action="{% url 'CambiarEstatus' estudiante.id %}" method="POST">
                                         {% csrf_token %}
