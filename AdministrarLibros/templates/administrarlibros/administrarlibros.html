@@ -64,6 +64,9 @@
         {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
             <script> alert('Agregado correctamente')</script>
         {% endif %}
+        {% if Msm %} <!-- si se obtiene la redirección a la nueva url -->
+            <script> alert('Actualizado correctamente')</script>
+        {% endif %}
 
         <center><div id = "Ingresar" class="ingresar" style="display: none;">
             <h2>Ingresando Nuevo Libro/Tesis</h2>
@@ -102,8 +105,8 @@
                             <td>{{libro.cantidadint}}</td>
                             <td>{{libro.cantidadext}}</td>
                             <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
-                            <td>{{libro.descripcion}}</td>
                             <td>{{libro.categoria}}</td>
+                            <td>{{libro.descripcion}}</td>
                             <td>{{libro.fecha}}</td>
                         </tr>
                     {% endfor %}

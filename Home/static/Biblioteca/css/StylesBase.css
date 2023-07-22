@@ -6,7 +6,8 @@
     font-family: 'Fira Sans', sans-serif;
 }
 body{
-    background-color: blanchedalmond;
+    /*background-color: blanchedalmond;*/
+    background-image: url("");
 }
 
 /*Esto es el Header*/
