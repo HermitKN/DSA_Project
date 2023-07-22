@@ -50,4 +50,27 @@ def editar_libros(request, id):
         Libros = Libro.objects.all()
         FormLibro = FormularioLibro()
         return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros})
+    
+def libro_editado(request, id):
+    #Para el Formulario
+    FormLibro = FormularioLibro()
+    #Para el Listado
+
+    if request.method=="POST":
+       nombre = request.POST['txtnom']
+       autor = request.POST['txtautor']
+       interna = request.POST['txtcant']
+       externa = request.POST['txtcante']
+       categoria = request.POST['txtcategory']
+       descripcion = request.POST['txtdescrip']
+       book = Libro.objects.get(id = id)
+       book.nombre = nombre
+       book.autor = autor
+       book.cantidadint = interna
+       book.cantidadext = externa
+       book.categoria = categoria
+       book.descripcion = descripcion
+       book.save()
         
+    libros=Libro.objects.all()
+    return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': libros, 'Msm': 'Actualizacion completa'})

@@ -23,11 +23,29 @@
         {% else %}
             <div class="opciones">
                 <div class="box">
-                    <h1>¿Que actividad desea realizar?</h1>
+                    <h1>Modifique lo que sera editado</h1>
                 </div>
-                <div class="box2">
-                    <button>{{libros.nombre}}</button>
-                </div>
+                <center><form action="{% url 'LibroEditado' libros.id %}" method="post" style="margin: auto; color: aliceblue;">
+                {% csrf_token %}
+                <label for="name">Nombre Libro</label>
+                <input type="text" name="txtnom" value="{{ libros.nombre }}" placeholder="Nombre de Libro" required />
+                <label for="name">Nombre Autor</label>
+                <input type="text" name="txtautor" value="{{ libros.autor }}" placeholder="Nombre de Autor" required />
+                <br/>
+                {% if libros.tipo == 'Libros' %}
+                <label for="name">Cantidad Interna</label>
+                <input type="number" name="txtcant" value="{{ libros.cantidadint }}" min="1" max="50" placeholder="Precio de Producto" required />
+                <label for="name">Cantidad Externa</label>
+                <input type="number" name="txtcante" value="{{ libros.cantidadext }}" min="0" max="50" placeholder="Precio de Producto" required />
+                <br/>
+                {% endif %}
+                <label for="name">Categoria</label>
+                <input type="text" name="txtcategory" value="{{ libros.categoria }}" placeholder="Categoria" required />
+                <label for="name">Descripcion</label>
+                <input type="text" name="txtdescrip" value="{{ libros.descripcion }}" placeholder="Descripcion" required />
+                <br/>
+                <button type="submit" class="ingresar-button"><strong>Guardar Datos</strong></button>
+                </form></center>
             </div>
         {% endif %}
         
