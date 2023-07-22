@@ -57,19 +57,33 @@ def libro_editado(request, id):
     #Para el Listado
 
     if request.method=="POST":
-       nombre = request.POST['txtnom']
-       autor = request.POST['txtautor']
-       interna = request.POST['txtcant']
-       externa = request.POST['txtcante']
-       categoria = request.POST['txtcategory']
-       descripcion = request.POST['txtdescrip']
+       
        book = Libro.objects.get(id = id)
-       book.nombre = nombre
-       book.autor = autor
-       book.cantidadint = interna
-       book.cantidadext = externa
-       book.categoria = categoria
-       book.descripcion = descripcion
+       if book.tipo == 'Libros':
+            nombre = request.POST['txtnom']
+            autor = request.POST['txtautor']
+            interna = request.POST['txtcant']
+            externa = request.POST['txtcante']
+            categoria = request.POST['txtcategory']
+            descripcion = request.POST['txtdescrip']
+            book.nombre = nombre
+            book.autor = autor
+            book.cantidadint = interna
+            book.cantidadext = externa
+            book.categoria = categoria
+            book.descripcion = descripcion
+       else:
+            nombre = request.POST['txtnom']
+            autor = request.POST['txtautor']
+            categoria = request.POST['txtcategory']
+            descripcion = request.POST['txtdescrip']
+            book.nombre = nombre
+            book.autor = autor
+            book.categoria = categoria
+            book.descripcion = descripcion
+
+        
+           
        book.save()
         
     libros=Libro.objects.all()
