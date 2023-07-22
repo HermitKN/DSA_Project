@@ -5,13 +5,21 @@
 {% block content %}
     <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
-    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
-    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesTablas.css' %}">
-    <script defer src="{% static 'Biblioteca\js\opciones.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesLibros.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesTablas.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/Pagination.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/Filtros.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="{% static 'Biblioteca/js/opciones.js' %}"></script>
     
     &nbsp;
     {% if user.is_authenticated %}
         <div class="visualizar">
+            <div class="filters">
+                <a {% if request.GET.penalizados %}class="active" {% endif %}href="?penalizados=1">Estudiantes penalizados</a>
+                <a {% if request.GET.no_penalizados %}class="active" {% endif %}href="?no_penalizados=1">Estudiantes no penalizados</a>
+                <a {% if not request.GET %}class="active" {% endif %}href="?">Todos los préstamos</a>
+            </div>
             <table style="margin: auto;">
                 <thead>
                     <tr>
@@ -29,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for nota in notas %}
+                    {% for nota in pagina_obj %}
                         <tr>
                             <td>{{nota.id}}</td>
                             <td>{{nota.tipo}}</td>
@@ -53,17 +61,30 @@
                                 </form>   
                             {% elif not nota.devuelto and  nota.penalizacion == 'Penalización semanal'%} 
                                 <td>{{ nota.cantidad_devuelta }}</td>
-                                <td>{{nota.devuelto}}</td>
+                                <td><h3><i class='fa-solid fa-xmark' style='color: red;'></i></h3></td>
                                 <td><h5 style="color: red;">Devolución Incompleta!</h5></td>
                             {% else %}
                                 <td>{{ nota.cantidad_devuelta }}</td>
-                                <td>{{nota.devuelto}}</td>
+                                <td><h3><i class='fa-solid fa-check' style='color: green;'></i></h3></td>
                                 <td><h5 style="color: green;">Devolución Completa!</h5></td>
                             {% endif %}           
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            <div class="pagination">
+                {% if pagina_obj.has_previous %}
+                    <a href="?pagina=1">Primera Página</a>
+                    <a href="?pagina={{ pagina_obj.previous_page_number }}">Página Anterior</a>
+                {% endif %}
+            
+                <span class="current-page">{{ pagina_obj.number }}</span>
+            
+                {% if pagina_obj.has_next %}
+                    <a href="?pagina={{ pagina_obj.next_page_number }}">Página Siguiente</a>
+                    <a href="?pagina={{ pagina_obj.paginator.num_pages }}">Última Página</a>
+                {% endif %}
+            </div>
         </div>
     {% else %}
         <h3 style="text-align: center">Perdone pero debe logearse</h3>
