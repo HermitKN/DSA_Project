@@ -7,7 +7,16 @@ const dataTableOptions = {
         { searchable: false, targets: [4, 5, 6] }
     ],
     pageLength: 4,
-    destroy: true
+    destroy: true,
+    language:{
+        search: "Buscar",
+        paginate:{
+            first: "Primero",
+            last: "Ultimo",
+            next: "Siguiente",
+            previous: "Anterior"
+        }
+    }
 };
 
 const initDataTable = async () => {
@@ -40,6 +49,7 @@ const listaLibros = async () => {
                     <td style="text-align: center !important;">${libros.categoria}</td>
                     <td style="text-align: center !important;">${libros.descripcion}</td>
                     <td style="text-align: center !important;">${libros.fecha}</td>
+                    
                 </tr>`;
         });
         tableBody.innerHTML = content;
