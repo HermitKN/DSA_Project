@@ -47,8 +47,3 @@ function MostrarEditar(){
     document.getElementById("Editar").style.display = "block"
     document.getElementById("BotonEditar").style.backgroundColor = "#40A6FF"
 }
-function EliminarLibro(id){
-    if(confirm("¿Seguro que desea eliminarlo?")){
-       
-    }
-}

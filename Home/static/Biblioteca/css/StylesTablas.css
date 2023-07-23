@@ -1,25 +1,24 @@
-.visualizar table, .eliminar table, .editar table{
+.table-responsive table, .eliminar table, .editar table{
     margin: auto;
     font-family: 'Times New Roman', Times, serif;
     background-color: #11212f;
-    text-align: center;
+    text-align: center !important;
     border-radius: 1em;
 }
-.visualizar th, .visualizar td, .eliminar th, .eliminar td, .editar th, .editar td{
-    padding: 1em;
-    border: solid 1px white;
+.table-responsive th, .visualizar td, .eliminar th, .eliminar td, .editar th, .editar td{
+    padding: 1em !important;
 }
 
-.visualizar th, .eliminar th, .editar th{
+.table-responsive th, .eliminar th, .editar th{
     color: #DB9321;
 }
-.visualizar td, .eliminar td, .editar td{
-    background-color: #40A6FF;
+.table-responsive td, .eliminar td, .editar td{
+    background-color: #40A6FF !important;
 }
 
 .ingresar{
     width: 50%;
-    background-color: #11212f;
+    background-color: #11212f !important;
     border-radius: 2em;
 }
 .ingresar h2{

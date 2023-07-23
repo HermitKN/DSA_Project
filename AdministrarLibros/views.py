@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import FormularioLibro
 from .models import Libro
+from django.http.response import JsonResponse
 
 # Create your views here.
 
@@ -17,8 +18,13 @@ def administrar_libros(request):
             book.nombre = FormLibro.cleaned_data['nombre']
             book.autor = FormLibro.cleaned_data['autor']
             book.tipo = FormLibro.cleaned_data['tipo']
-            book.cantidadint = FormLibro.cleaned_data['cantidadint']
-            book.cantidadext = FormLibro.cleaned_data['cantidadext']
+            if book.tipo == 'Tesis':
+                book.cantidadint = 1    
+                book.cantidadext = 0
+            else:
+                book.cantidadint = FormLibro.cleaned_data['cantidadint']
+                book.cantidadext = FormLibro.cleaned_data['cantidadext']
+                
             book.descripcion = FormLibro.cleaned_data['descripcion']
             book.categoria = FormLibro.cleaned_data['categoria']
             book.save() 
@@ -27,6 +33,11 @@ def administrar_libros(request):
     libros=Libro.objects.all()
 
     return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': libros})
+
+def dataTable(_request):
+
+    libros=list(Libro.objects.values())
+    return JsonResponse({'libros': libros})
 
 def eliminar_libro(request, id):
 
@@ -88,3 +99,4 @@ def libro_editado(request, id):
         
     libros=Libro.objects.all()
     return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': libros, 'Msm': 'Actualizacion completa'})
+
