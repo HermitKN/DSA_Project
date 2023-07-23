@@ -18,8 +18,13 @@ def administrar_libros(request):
             book.nombre = FormLibro.cleaned_data['nombre']
             book.autor = FormLibro.cleaned_data['autor']
             book.tipo = FormLibro.cleaned_data['tipo']
-            book.cantidadint = FormLibro.cleaned_data['cantidadint']
-            book.cantidadext = FormLibro.cleaned_data['cantidadext']
+            if book.tipo == 'Tesis':
+                book.cantidadint = 1    
+                book.cantidadext = 0
+            else:
+                book.cantidadint = FormLibro.cleaned_data['cantidadint']
+                book.cantidadext = FormLibro.cleaned_data['cantidadext']
+                
             book.descripcion = FormLibro.cleaned_data['descripcion']
             book.categoria = FormLibro.cleaned_data['categoria']
             book.save() 

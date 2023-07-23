@@ -6,7 +6,7 @@ const dataTableOptions = {
         { orderable: false, targets: [8, 9] },
         { searchable: false, targets: [4, 5, 6] }
     ],
-    pageLength: 4,
+    pageLength: 5,
     destroy: true,
     language:{
         search: "Buscar",
