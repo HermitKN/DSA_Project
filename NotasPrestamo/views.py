@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from GenerarPrestamo.models import Prestamo
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -27,27 +27,38 @@ def notas_prestamo(request):
             return redirect('/notasprestamo/?true')
     
     # Filtros
-    mostrar_penalizados = request.GET.get('penalizados')
-    mostrar_no_penalizados = request.GET.get('no_penalizados')
-    
     notas=Prestamo.objects.all()
     
-    # Filtrar por préstamos con estudiantes penalizados o no penalizados si se especifica el parámetro en la URL
-    if mostrar_penalizados is not None:
-        notas = notas.filter(penalizacion__exact='Penalización semanal')
-        
-    if mostrar_no_penalizados is not None:
-        notas = notas.filter(penalizacion__exact='Sin penalización')
+    filtro = request.GET.get('filtro')
+    if filtro:
+        if filtro == 'internos':
+            notas = notas.filter(tipo__exact='Interno')
+        elif filtro == 'externos':
+            notas = notas.filter(tipo__exact='Externo')
+        elif filtro == 'completadas':
+            notas = notas.filter(devuelto__exact=True)
+        elif filtro == 'incompletadas':
+            notas = notas.filter(devuelto__exact=False, penalizacion__exact='Penalización semanal')
+        elif filtro == 'pendientes':
+            notas = notas.filter(devuelto__exact=False, penalizacion__exact='Sin penalización')
     
     # Definir el número de elementos por página
     elementos_por_pagina = 5
     paginator = Paginator(notas, elementos_por_pagina)
 
     # Obtener el número de página desde la consulta GET, si no se especifica, será la página 1
-    pagina_numero = request.GET.get('pagina')
-    pagina_obj = paginator.get_page(pagina_numero)
+    page = request.GET.get('page')
     
-    return render(request, "notasprestamo/notasprestamo.html", {'notas':notas, 'pagina_obj': pagina_obj})
+    try:
+        pagina_obj = paginator.get_page(page)
+    except PageNotAnInteger:
+        # Si el parámetro page no es un entero, mostrar la primera página
+        pagina_obj = paginator.get_page(1)
+    except EmptyPage:
+        # Si la página está fuera del rango, mostrar la última página
+        pagina_obj = paginator.get_page(paginator.num_pages)
+    
+    return render(request, "notasprestamo/notasprestamo.html", {'notas':notas, 'pagina_obj':pagina_obj})
 
 
 

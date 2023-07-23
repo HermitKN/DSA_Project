@@ -26,4 +26,8 @@
     border: 1px solid #007BFF;
 }
 
+.filtro-select {
+    width: 150px; /* Ajusta el ancho según tus preferencias */
+}
+
 
