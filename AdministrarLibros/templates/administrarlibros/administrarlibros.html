@@ -117,6 +117,10 @@
         </div></div>
 
         <div id="Eliminar" class="eliminar" style="display: none;">
+            {% if C2 %}
+            <script>document.getElementById("Eliminar").style.display = "block"
+                document.getElementById("BotonEliminar").style.backgroundColor = "#40A6FF"</script>
+            {% endif %}
             <div style="margin-left: 7%; display: grid; grid-template-columns: repeat(2, 18em);">
                 <form action="{% url 'BuscarID' %}" method="post" style="margin: auto; color: aliceblue;">
                     {% csrf_token %}
@@ -168,6 +172,13 @@
         </div>
 
         <div id="Editar" class="editar" style="display: none;">
+            {% if C2 %}
+            <script>
+                document.getElementById("Eliminar").style.display = "none"
+                document.getElementById("BotonEliminar").style.backgroundColor = "white"
+                document.getElementById("Editar").style.display = "block"
+                document.getElementById("BotonEditar").style.backgroundColor = "#40A6FF"</script>
+            {% endif %}
             <div style="margin-left: 7%; display: grid; grid-template-columns: repeat(2, 18em);">
                 <form action="{% url 'BuscarID' %}" method="post" style="margin: auto; color: aliceblue;">
                     {% csrf_token %}
