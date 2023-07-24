@@ -39,6 +39,18 @@ def dataTable(_request):
     libros=list(Libro.objects.values())
     return JsonResponse({'libros': libros})
 
+def buscarid(request):
+    if request.method=="POST":
+        id = request.POST['txtid']
+        try:
+            Libros = Libro.objects.filter(id__icontains = id)
+            FormLibro = FormularioLibro()
+            return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros, 'C2':len(Libros)})
+        except:
+            Libros = Libro.objects.all()
+            FormLibro = FormularioLibro()
+            return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros, 'E2': 'Error'})
+
 def eliminar_libro(request, id):
 
     try:
