@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from GenerarPrestamo.models import Prestamo
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.db.models import Q
+from django.utils.dateparse import parse_date
+from datetime import datetime, timedelta
 # Create your views here.
 
 def notas_prestamo(request):
@@ -26,9 +28,23 @@ def notas_prestamo(request):
             libro.save()
             return redirect('/notasprestamo/?true')
     
-    # Filtros
+    
     notas=Prestamo.objects.all()
     
+    query = request.GET.get('q')
+    if query:
+        notas = notas.filter(
+            Q(id__icontains=query) |
+            Q(estudiante__id__icontains=query) |
+            Q(libro__id__icontains=query) |
+            Q(tipo__icontains=query) |
+            Q(funcionario__username__icontains=query) |
+            Q(penalizacion__icontains=query) 
+        )     
+    else:
+        notas = Prestamo.objects.all()
+        
+    # Filtros
     filtro = request.GET.get('filtro')
     if filtro:
         if filtro == 'internos':
@@ -59,6 +75,8 @@ def notas_prestamo(request):
         pagina_obj = paginator.get_page(paginator.num_pages)
     
     return render(request, "notasprestamo/notasprestamo.html", {'notas':notas, 'pagina_obj':pagina_obj})
+
+
 
 
 

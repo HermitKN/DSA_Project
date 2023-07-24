@@ -8,13 +8,23 @@
     
     <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
-    
-    <form method="post" action="" style="color: black;">
-        {% csrf_token %}
-        <div style="width: 75%; margin: auto;">
-            {{form|crispy}} 
-            <button type="submit" class="btn btn-success">Registrarse</button> 
+    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
+    &nbsp;
+    <div style="margin: auto;" class="opciones">
+        <div class="box">
+            <h1 style="text-align: center">Regístrese</h1>
         </div>
-    </form>
+        <div class="box2">
+            <h5 style="margin-left: 75px; color: yellowgreen;">Regístrese para obtener una cuenta gratuita: </h5>
+            <form method="post" action="" style="color: white;">
+                {% csrf_token %}
+                <div style="width: 75%; margin: auto;">
+                    {{form|crispy}} 
+                    <input style="text-align: center; margin-left: 150px;" type="submit" class="btn btn-success" value="Crear una Cuenta"> 
+                </div>
+            </form>
+        </div>
+        &nbsp;
+    </div>
     &nbsp;
 {% endblock %} 

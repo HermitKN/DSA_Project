@@ -7,6 +7,7 @@
 }
 .table-responsive th, .visualizar td, .eliminar th, .eliminar td, .editar th, .editar td{
     padding: 1em !important;
+    border: solid 1px white;
 }
 
 .table-responsive th, .eliminar th, .editar th{
@@ -14,6 +15,9 @@
 }
 .table-responsive td, .eliminar td, .editar td{
     background-color: #40A6FF !important;
+    border: solid 1px white;
+    padding: 5px 20px; 
+    margin: 0 5px;  
 }
 
 .ingresar{

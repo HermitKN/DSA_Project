@@ -9,6 +9,9 @@ Trabajadores:
 	User: Worker2
 	password: 12book12
 
+	User: worker3
+	password: 45tired45
+
 Libreías a instalar:
 	pip install django-crispy-forms
 	pip install crispy-bootstrap4
