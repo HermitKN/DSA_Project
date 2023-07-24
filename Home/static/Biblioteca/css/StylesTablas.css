@@ -44,5 +44,10 @@
     height: 50px;
     border-radius: 1em;
     margin-bottom: 10px;
-    background-color: rgb(25, 162, 13);;
+    background-color: rgb(25, 162, 13);
+}
+.ingresar-button2{
+    background-color: #ffbc0e;
+    border-radius: 1em;
+    margin-bottom: 10px;
 }
