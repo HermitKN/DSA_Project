@@ -5,7 +5,7 @@ from .models import Libro
 
 class LibrosAdmin(admin.ModelAdmin):
     list_display=("id", "nombre", "autor", "tipo", "cantidadext", "categoria", "fecha")
-    search_fields=("id", "nombre", "autor", "tipo", "cantidadext", "categoria")
+    search_fields=("id", "nombre", "autor", "tipo", "cantidadext", "categoria", "fecha")
     list_filter=("nombre", "autor", "tipo")
     date_hierarchy=("fecha")
 

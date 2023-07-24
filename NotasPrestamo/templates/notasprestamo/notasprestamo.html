@@ -11,16 +11,19 @@
     <link rel="stylesheet" href="{% static 'Biblioteca/css/Filtros.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script defer src="{% static 'Biblioteca/js/opciones.js' %}"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     &nbsp;
     {% if user.is_authenticated %}
-        <div class="visualizar">
-            
-            
-            <form method="get" class="form-inline">
+        <div class="table-responsive">
+            <form method="get" class="form-inline" id="filter-form">
                 <div class="form-group mr-2">
-                  <label for="filtro" class="mr-2">Filtro:</label>
-                  <select name="filtro" class="form-control filtro-select">
+                    <label style="color: #333; padding: 5px 10px; margin: 0 5px; background-color: #ffbc0e; border-radius: 5px; font-weight: bold;" class="mr-2">Buscar:</label>
+                    <input type="text" name="q" class="form-control" placeholder="Buscar">
+                </div>
+                <div class="form-group mr-2">
+                  <label style="color: #333; padding: 5px 10px; margin: 0 5px; background-color: #ffbc0e; border-radius: 5px; font-weight: bold;" for="filtro" class="mr-2">Filtro:</label>
+                  <select name="filtro" class="form-control filtro-select" id="filtro-select">
                     <option value="">Todos</option>
                     <option value="internos"{% if request.GET.filtro == "internos" %} selected{% endif %}>Préstamos Internos</option>
                     <option value="externos"{% if request.GET.filtro == "externos" %} selected{% endif %}>Préstamos Externos</option>
@@ -29,16 +32,16 @@
                     <option value="pendientes"{% if request.GET.filtro == "pendientes" %} selected{% endif %}>Devoluciones Pendientes</option>
                   </select>
                 </div>
-                <button type="submit" class="btn btn-info">Filtrar</button>
             </form>
             &nbsp;
+
             <table style="margin: auto;">
                 <thead>
                     <tr>
                         <th>Nota</th>
                         <th>Tipo de préstamo</th>
-                        <th>Estudiante</th>
-                        <th>Libro</th>
+                        <th>CI del Estudiante</th>
+                        <th>Cota del Libro</th>
                         <th>Cantidad de libros prestados</th>
                         <th>Funcionario</th>
                         <th>Fecha de generación del préstamo</th>
@@ -87,8 +90,8 @@
             <div class="pagination">
                 <span class="step-links">
                     {% if pagina_obj.has_previous %}
-                        <a href="?page=1{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}">&laquo; Primera</a>
-                        <a href="?page={{ pagina_obj.previous_page_number }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}">Anterior</a>
+                        <a href="?page=1{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; Primera</a>
+                        <a href="?page={{ pagina_obj.previous_page_number }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Anterior</a>
                     {% endif %}
             
                     {% for i in pagina_obj.paginator.page_range %}
@@ -98,12 +101,25 @@
                     {% endfor %}
             
                     {% if pagina_obj.has_next %}
-                        <a href="?page={{ pagina_obj.next_page_number }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}">Siguiente</a>
-                        <a href="?page={{ pagina_obj.paginator.num_pages }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}">Última &raquo;</a>
+                        <a href="?page={{ pagina_obj.next_page_number }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Siguiente</a>
+                        <a href="?page={{ pagina_obj.paginator.num_pages }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Última &raquo;</a>
                     {% endif %}
                 </span>
             </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Obtener el formulario y el campo selectivo
+                const filterForm = document.getElementById('filter-form');
+                const filtroSelect = document.getElementById('filtro-select');
+        
+                // Agregar evento de cambio al campo selectivo
+                filtroSelect.addEventListener('change', function () {
+                    // Enviar automáticamente el formulario cuando se seleccione una opción
+                    filterForm.submit();
+                });
+            });
+        </script> 
     {% else %}
         <h3 style="text-align: center">Perdone pero debe logearse</h3>
     {% endif %}

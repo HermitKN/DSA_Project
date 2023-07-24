@@ -8,20 +8,31 @@
     
     <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
-    
-    <form method="post" action="" style="color: black;">
-        {% csrf_token %}
-        <div style="width: 75%; margin: auto;">
-            {% if messages %}
-                {% for message in messages%}
-                    <span class="alert alert-danger{{error_messages.tags}}"> {{message}} </span>
-                {% endfor %}
-            {% endif %}
-            <br/>
-            &nbsp;
-            {{form|crispy}} 
-            <button type="submit" class="btn btn-success">Ingresar Sesión</button> 
+    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
+    &nbsp;
+    <div style="margin: auto;" class="opciones">
+        <div class="box">
+            <h1>Iniciar sesión</h1>
         </div>
-    </form>
+        <div class="box2">
+            <h5 style="color: yellowgreen">Por favor, ingrese al Sistema completetando los campos:</h5>
+            <form method="post" action="" style="color: white;">
+                {% csrf_token %}
+                <div style="width: 75%; margin: auto;">
+                    {% if messages %}
+                        {% for message in messages%}
+                            <span class="alert alert-danger{{error_messages.tags}}"> {{message}} </span>
+                        {% endfor %}
+                    {% endif %}
+                    <br/>
+                    &nbsp;
+                    {{form|crispy}} 
+                    <input style="text-align: center; margin-left: 150px;" type="submit" class="btn btn-success" value="Ingresar Sesión">
+                    
+                </div>
+            </form>
+        </div>
+        &nbsp;
+    </div>
     &nbsp;
 {% endblock %} 
