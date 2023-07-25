@@ -44,11 +44,8 @@
                     <button id="BotonIngresar" onclick="MostrarIngresar()" class="ops">
                         Ingresar
                     </button>
-                    <button id="BotonEliminar" onclick="MostrarEliminar()" class="ops">
-                        Eliminar
-                    </button>
-                    <button id="BotonEditar" onclick="MostrarEditar()" class="ops">
-                        Editar
+                    <button id="BotonEditar" onclick="MostrarEditar()" class="opsg">
+                        Editar/Eliminar
                     </button>
                     <button id="BotonVisualizar" onclick="MostrarVisualizar()" class="ops">
                         Visualizar
@@ -63,8 +60,7 @@
                 <h1>¿Que actividad desea realizar?</h1>
             </div>
             <div class="box2">
-                <button id="BotonVisualizar" onclick="MostrarVisualizarA()" onclick="MostrarVisualizarA()" class="ops">Visualizar</button>
-                    
+                <button id="BotonVisualizar" onclick="MostrarVisualizarA()" onclick="MostrarVisualizarA()" class="ops">Visualizar</button>    
             </div>
         </div>        
     {% endif %}
@@ -85,7 +81,7 @@
         <center><div id = "Ingresar" class="ingresar" style="display: none;">
             <h2>Ingresando Nuevo Libro/Tesis</h2>
             <h3>Por favor complete los campos:</h3>
-            <form method="POST">
+            <form action="{% url 'AdministrarLibros' %}" method="POST">
                 {% csrf_token %}
                 <table>{{formL.as_table}}</table>
                 <button class="ingresar-button" type="submit"><strong>Ingresar Libro</strong></button>
@@ -116,66 +112,9 @@
             </table>
         </div></div>
 
-        <div id="Eliminar" class="eliminar" style="display: none;">
-            {% if C2 %}
-            <script>document.getElementById("Eliminar").style.display = "block"
-                document.getElementById("BotonEliminar").style.backgroundColor = "#40A6FF"</script>
-            {% endif %}
-            <div style="margin-left: 7%; display: grid; grid-template-columns: repeat(2, 18em);">
-                <form action="{% url 'BuscarID' %}" method="post" style="margin: auto; color: aliceblue;">
-                    {% csrf_token %}
-                    <input type="text" name="txtid" placeholder="Cota del libro" required />
-                    <button type="submit" class="ingresar-button2"><strong>Buscar</strong></button>
-                    </form>
-                    <form action="{% url 'AdministrarLibros' %}">
-                        <button type="submit" class="ingresar-button2"><strong>Mostrar Todo</strong></button>
-                    </form>
-            </div>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Cota</th>
-                        <th>Nombre</th>
-                        <th>Autor</th>
-                        <th>Tipo</th>
-                        <th>Cantidad Interna</th>
-                        <th>Cantidad Externa</th>
-                        <th>Cantidad Total</th>
-                        <th>Categoria/Tags</th>
-                        <th>Eliminar</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for libro in libros %}
-                        <tr>
-                            <td>{{libro.id}}</td>
-                            <td>{{libro.nombre}}</td>
-                            <td>{{libro.autor}}</td>
-                            <td>{{libro.tipo}}</td>
-                            <td>{{libro.cantidadint}}</td>
-                            <td>{{libro.cantidadext}}</td>
-                            <td>{{libro.cantidadint|add:libro.cantidadext}}</td>
-                            <td>{{libro.categoria}}</td>
-                            <td><form action="{% url 'Eliminarlibro' libro.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" >
-                                        <img src="{% static 'Biblioteca/imgprojts/recycle-bin.png' %}" alt="Eliminar Elemento" style="height: 25px;">
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
         <div id="Editar" class="editar" style="display: none;">
             {% if C2 %}
             <script>
-                document.getElementById("Eliminar").style.display = "none"
-                document.getElementById("BotonEliminar").style.backgroundColor = "white"
                 document.getElementById("Editar").style.display = "block"
                 document.getElementById("BotonEditar").style.backgroundColor = "#40A6FF"</script>
             {% endif %}
@@ -201,7 +140,7 @@
                         <th>Cantidad Total</th>
                         <th>Categoria/Tags</th>
                         <th>Descripcion</th>
-                        <th>Editar</th>
+                        <th>Editar/Eliminar</th>
                         
                     </tr>
                 </thead>
@@ -221,6 +160,12 @@
                                 {% csrf_token %}
                                 <button type="submit" >
                                     <img src="{% static 'Biblioteca/imgprojts/edit.png' %}" alt="Editar Elemento" style="height: 25px;">
+                                </button>
+                            </form>
+                            <form action="{% url 'Eliminarlibro' libro.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" >
+                                    <img src="{% static 'Biblioteca/imgprojts/recycle-bin.png' %}" alt="Eliminar Elemento" style="height: 25px;">
                                 </button>
                             </form>
                             </td>

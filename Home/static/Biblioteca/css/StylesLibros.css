@@ -15,9 +15,14 @@
     padding: 5px;
     margin-left: 50px;
 }
-.opciones .box2 button{
+.opciones .box2 .ops{
     border-radius: 40%;
     width: 100px;
+    height: 50px;
+}
+.opciones .box2 .opsg{
+    border-radius: 40%;
+    width: 150px;
     height: 50px;
 }
 .ingresar form table{

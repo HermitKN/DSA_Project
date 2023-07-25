@@ -58,11 +58,12 @@ def eliminar_libro(request, id):
         Libros.delete()
         Libros = Libro.objects.all()
         FormLibro = FormularioLibro()
-        return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros})
+        return redirect("/administrarlibros/")    
     except:
         Libros = Libro.objects.all()
         FormLibro = FormularioLibro()
-        return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros})
+    
+    return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': Libros})
     
 def editar_libros(request, id):
 
