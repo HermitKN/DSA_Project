@@ -105,9 +105,8 @@ def libro_editado(request, id):
             book.categoria = categoria
             book.descripcion = descripcion
 
-        
-           
        book.save()
+       return redirect("/administrarlibros/")
         
     libros=Libro.objects.all()
     return render(request, "administrarlibros/administrarlibros.html", {'formL':FormLibro, 'libros': libros, 'Msm': 'Actualizacion completa'})
