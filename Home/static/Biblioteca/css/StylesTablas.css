@@ -51,3 +51,10 @@
     border-radius: 1em;
     margin-bottom: 10px;
 }
+.editdelete{
+    transition: all 300ms ease;
+}
+.editdelete:hover{
+    background-color: #ffbc0e;
+    transform: scale(1.2);
+}

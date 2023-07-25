@@ -158,13 +158,13 @@
                             <td>{{libro.descripcion}}</td>
                             <td><form action="{% url 'Editarlibro' libro.id %}" method="POST">
                                 {% csrf_token %}
-                                <button type="submit" >
+                                <button class="editdelete" type="submit" >
                                     <img src="{% static 'Biblioteca/imgprojts/edit.png' %}" alt="Editar Elemento" style="height: 25px;">
                                 </button>
                             </form>
                             <form action="{% url 'Eliminarlibro' libro.id %}" method="POST">
                                 {% csrf_token %}
-                                <button type="submit" >
+                                <button class="editdelete" type="submit" >
                                     <img src="{% static 'Biblioteca/imgprojts/recycle-bin.png' %}" alt="Eliminar Elemento" style="height: 25px;">
                                 </button>
                             </form>

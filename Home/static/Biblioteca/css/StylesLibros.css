@@ -19,11 +19,17 @@
     border-radius: 40%;
     width: 100px;
     height: 50px;
+    transition: all 300ms ease;
 }
 .opciones .box2 .opsg{
     border-radius: 40%;
     width: 150px;
     height: 50px;
+    transition: all 300ms ease;
+}
+.opciones .box2 .opsg:hover, .ops:hover{
+    background-color: #40A6FF;
+    transform: scale(1.2);
 }
 .ingresar form table{
     margin: auto;
