@@ -36,7 +36,7 @@
     {% else %}
         <div class="opciones">
             <div class="box">
-                <h1>¿Que actividad desea realizar?</h1>
+                <h1>Debe logearse primero.</h1>
             </div>
         </div>        
     {% endif %}
@@ -79,7 +79,8 @@
                 </form>
                 &nbsp;
                 <form action="{% url 'AdministrarEstudiantes' %}">
-                    <button style="padding: 7px 15px;" type="submit" class="ingresar-button2"><strong>Mostrar Todo</strong></button>
+                    <button style="padding: 7px 15px;" type="submit" class="ingresar-button2">
+                        <strong>Mostrar Todo</strong></button>
                 </form>
             </div>
             &nbsp;
