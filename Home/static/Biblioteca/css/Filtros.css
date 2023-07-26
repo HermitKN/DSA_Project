@@ -31,4 +31,12 @@
 }
 
 
+.form-container {
+    display: flex;
+}
+
+.form-inline {
+    display: inline-flex;
+    align-items: center; /* Ajusta la alineación vertical dentro del contenedor flex */
+}
 

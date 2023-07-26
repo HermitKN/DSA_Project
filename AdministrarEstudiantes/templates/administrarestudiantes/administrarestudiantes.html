@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'Biblioteca/css/Pagination.css' %}">
     <link rel="stylesheet" href="{% static 'Biblioteca/css/Filtros.css' %}">
     <!--Para el DataTable-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
@@ -27,7 +28,7 @@
                 <button id="BotonIngresar" onclick="MostrarIngresar()" class="ops">
                     Ingresar
                 </button>
-                <button id="BotonEliminar" onclick="MostrarVisualizarE()" class="ops">
+                <button id="BotonVisualizar" onclick="MostrarVisualizarE()" class="ops">
                     Visualizar
                 </button>
             </div>
@@ -64,21 +65,23 @@
         </div></center>
 
         <div id="Visualizar" class="eliminar" style="display: none;">
-            <form method="get" class="form-inline" id="filter-form">
-                <div class="form-group mr-2">
-                    <label style="color: #333; padding: 5px 10px; margin: 0 5px; background-color: #ffbc0e; border-radius: 5px; font-weight: bold;" class="ingresar-button">Buscar:</label>
+            <div class="form-container">
+                <form method="get" class="form-inline" id="filter-form">
+                    <label style="color: #333; padding: 7px 15px; margin: 0 5px; background-color: #ffbc0e; border-radius: 5px; font-weight: bold;" class="ingresar-button2">Buscar:</label>
                     <input type="text" name="b" class="form-control" placeholder="Buscar" value="{{ request.GET.b }}">
-                </div>
-                <div class="form-group mr-2">
-                  <label style="color: #333; padding: 5px 10px; margin: 0 5px; background-color: #ffbc0e; border-radius: 5px; font-weight: bold;" for="filtro" class="ingresar-button">Filtro:</label>
-                  <select name="filtro" class="form-control filtro-select" id="filtro-select">
-                    <option value="">Todos</option>
-                    <option value="habilitados"{% if request.GET.filtro == "habilitados" %} selected{% endif %}>Estudiantes Habilitados</option>
-                    <option value="deshabilitados"{% if request.GET.filtro == "deshabilitados" %} selected{% endif %}>Estudiantes Deshabilitados</option>
-                  </select>
-                </div>
+                    &nbsp;
+                    <label style="color: #333; padding: 7px 15px; margin: 0 5px; background-color: #ffbc0e; border-radius: 5px; font-weight: bold;" for="filtro" class="ingresar-button2">Filtro:</label>
+                    <select name="filtro" class="form-control filtro-select" id="filtro-select">
+                        <option value="">Todos</option>
+                        <option value="habilitados"{% if request.GET.filtro == "habilitados" %} selected{% endif %}>Estudiantes Habilitados</option>
+                        <option value="deshabilitados"{% if request.GET.filtro == "deshabilitados" %} selected{% endif %}>Estudiantes Deshabilitados</option>
+                    </select>
+                </form>
                 &nbsp;
-            </form>
+                <form action="{% url 'AdministrarEstudiantes' %}">
+                    <button style="padding: 7px 15px;" type="submit" class="ingresar-button2"><strong>Mostrar Todo</strong></button>
+                </form>
+            </div>
             &nbsp;
             <table>
                 <thead>
@@ -100,7 +103,7 @@
                             <td>
                                 <form action="{% url 'EditarEstudiante' estudiante.id %}" method="POST">
                                     {% csrf_token %}
-                                    <button type="submit" >
+                                    <button class="editdelete" type="submit" >
                                         <img src="{% static 'Biblioteca/imgprojts/edit.png' %}" alt="Editar Elemento" style="height: 25px;">
                                     </button>
                                 </form>
@@ -116,7 +119,7 @@
                             <td>
                                 <form action="{% url 'CambiarEstatus' estudiante.id %}" method="POST">
                                     {% csrf_token %}
-                                    <button type="submit">
+                                    <button class="editdelete" type="submit">
                                         {% if estudiante.estatus == 'Habilitado' %}
                                             Deshabilitar
                                         {% else %}
@@ -178,6 +181,52 @@
                 const searchTerm = searchInput.value.trim();
                 localStorage.setItem('searchTerm', searchTerm);
             });
+        </script>
+        <script defer src="{% static 'Biblioteca/js/opciones.js' %}"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Obtener el formulario y el campo de búsqueda
+                const filterForm = document.getElementById('filter-form');
+                const searchInput = filterForm.querySelector('[name="b"]');
+                const opcionVisualizar = document.getElementById("Visualizar");
+                const botonVisualizar = document.getElementById("BotonVisualizar");
+        
+                // Restaurar el término de búsqueda desde el LocalStorage (si existe)
+                const storedSearch = localStorage.getItem('searchTerm');
+                if (storedSearch) {
+                    searchInput.value = storedSearch;
+                }
+        
+                // Restaurar la última opción seleccionada desde el LocalStorage (si existe)
+                const lastOption = localStorage.getItem('lastOption');
+                if (lastOption) {
+                    mostrarOpcion(lastOption); // Llamamos a la función que muestra la opción guardada
+                }
+        
+                // Escuchar el evento de envío del formulario para almacenar el término de búsqueda
+                filterForm.addEventListener('submit', function (event) {
+                    const searchTerm = searchInput.value.trim();
+                    localStorage.setItem('searchTerm', searchTerm);
+                });
+        
+                // Escuchar el evento de clic en el botón Visualizar para guardar la opción
+                botonVisualizar.addEventListener('click', function () {
+                    guardarOpcion('Visualizar');
+                });
+            });
+        
+            function mostrarOpcion(opcion) {
+                // Mostramos la opción pasada como parámetro y actualizamos los estilos de los botones
+                document.getElementById("Ingresar").style.display = (opcion === "Ingresar" ? "block" : "none");
+                document.getElementById("BotonIngresar").style.backgroundColor = (opcion === "Ingresar" ? "#40A6FF" : "white");
+                document.getElementById("Visualizar").style.display = (opcion === "Visualizar" ? "block" : "none");
+                document.getElementById("BotonVisualizar").style.backgroundColor = (opcion === "Visualizar" ? "#40A6FF" : "white");
+            }
+        
+            function guardarOpcion(opcion) {
+                // Guardar la opción seleccionada en el almacenamiento local
+                localStorage.setItem('lastOption', opcion);
+            }
         </script>
     &nbsp;
 {% endblock %} 

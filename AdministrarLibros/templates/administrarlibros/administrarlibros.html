@@ -123,10 +123,10 @@
                     {% csrf_token %}
                     <input type="text" name="txtid" placeholder="Cota del libro" required />
                     <button type="submit" class="ingresar-button2"><strong>Buscar</strong></button>
-                    </form>
-                    <form action="{% url 'AdministrarLibros' %}">
-                        <button type="submit" class="ingresar-button2"><strong>Mostrar Todo</strong></button>
-                    </form>
+                </form>
+                <form action="{% url 'AdministrarLibros' %}">
+                    <button type="submit" class="ingresar-button2"><strong>Mostrar Todo</strong></button>
+                </form>
             </div>
             <table>
                 <thead>
