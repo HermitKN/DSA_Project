@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <link href="{% static 'Biblioteca/bootstrap.min.css' %}" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/StylesBase.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesTablas.css' %}">
+    <script defer src="{% static 'Biblioteca\js\opciones.js' %}"></script>
+    &nbsp;
+
+    <div class="opciones">
+        <div class="box">
+            <h2 style="color: white">Modifique la información del estudiante</h2>
+        </div>
+        <br/>
+        <center><form action="{% url 'EstudianteEditado' estudiantes.id %}" method="post" style="margin: auto; color: aliceblue;">
+            {% csrf_token %}
+            <label for="name">Nombre</label>
+            <input type="text" name="txtnom" value="{{ estudiantes.nombre }}" placeholder="Nombre de Estudiante" required />
+            <label for="name">Dirección</label>
+            <input style="margin-right: 65px" type="text" name="txtdir" value="{{ estudiantes.direccion }}" placeholder="Dirección de Estudiante" required />
+            <br/><br/>
+            <label for="name">Teléfono</label>
+            <input type="text" name="txttfn" value="{{ estudiantes.tfno }}" placeholder="Teléfono de Estudiante" required />
+            <label for="name">Correo electrónico</label>
+            <input type="text" name="txtemail" value="{{ estudiantes.email }}" placeholder="Correo de Estudiante" required />
+            <br/><br/>
+            <button type="submit" class="ingresar-button"><strong>Actualizar Datos</strong></button>
+        </form></center>
+    </div>          
+{% endblock %}

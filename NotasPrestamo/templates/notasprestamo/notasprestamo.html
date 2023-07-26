@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="{% static 'Biblioteca/css/Filtros.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script defer src="{% static 'Biblioteca/js/opciones.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--Para el DataTable-->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 
     &nbsp;
     {% if user.is_authenticated %}
@@ -32,6 +36,8 @@
                     <option value="pendientes"{% if request.GET.filtro == "pendientes" %} selected{% endif %}>Devoluciones Pendientes</option>
                   </select>
                 </div>
+                &nbsp;
+                <button href="{% url 'NotasPrestamo' %}" class="ingresar-button"><strong>Mostrar Todo</strong></button>
             </form>
             &nbsp;
 
@@ -119,7 +125,7 @@
                     filterForm.submit();
                 });
             });
-        </script> 
+        </script>
     {% else %}
         <h3 style="text-align: center">Perdone pero debe logearse</h3>
     {% endif %}

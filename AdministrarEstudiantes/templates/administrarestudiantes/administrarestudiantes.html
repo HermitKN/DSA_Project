@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesLibros.css' %}">
     <link rel="stylesheet" href="{% static 'Biblioteca\css\StylesTablas.css' %}">
     <script defer src="{% static 'Biblioteca\js\opciones.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/Pagination.css' %}">
+    <link rel="stylesheet" href="{% static 'Biblioteca/css/Filtros.css' %}">
+    <!--Para el DataTable-->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+ 
+
     &nbsp;
     {% if user.is_authenticated %}
         <div class="opciones">
@@ -18,10 +27,7 @@
                 <button id="BotonIngresar" onclick="MostrarIngresar()" class="ops">
                     Ingresar
                 </button>
-                <button id="BotonEliminar" onclick="MostrarEliminar()" class="ops">
-                    Editar
-                </button>
-                <button id="BotonVisualizar" onclick="MostrarVisualizar()" class="ops">
+                <button id="BotonEliminar" onclick="MostrarVisualizarE()" class="ops">
                     Visualizar
                 </button>
             </div>
@@ -31,16 +37,20 @@
             <div class="box">
                 <h1>¿Que actividad desea realizar?</h1>
             </div>
-            <div class="box2">
-                <button id="BotonVisualizar" onclick="MostrarVisualizarA()" class="ops">
-                    Visualizar
-                </button>
-            </div>
         </div>        
     {% endif %}
 
         {% if "isvalid" in request.GET %} <!-- si se obtiene la redirección a la nueva url -->
-            <p style="color: red; margin-left: 300px;">Estudiante añadido correctamente</p>
+            <script> alert('Agregado correctamente')</script>
+        {% endif %}
+        {% if "isedited" in request.GET %} <!-- Si se actualiza correctamente -->
+            <script> alert('Actualizado correctamente')</script>
+        {% endif %}
+        {% if E2 %} <!-- Error -->
+            <script> alert('Sucedio un error')</script>
+        {% endif %}
+        {% if C2 == 0 %} <!-- Si no se encuentra el elemento -->
+            <script> alert('No se encontro')</script>
         {% endif %}
 
         <center><div id = "Ingresar" class="ingresar" style="display: none;">
@@ -48,44 +58,32 @@
             <h3>Por favor complete los campos:</h3>
             <form method="POST"> 
                 {% csrf_token %} 
-                <table>{{myFormE.as_table}}</table> 
+                <table>{{formE.as_table}}</table> 
                 <button class="ingresar-button" type="submit"><strong>Ingresar Estudiante</strong></button> 
             </form>
         </div></center>
 
-        <div id="Eliminar" class="editar" style="display: none;">
+        <div id="Visualizar" class="eliminar" style="display: none;">
+            <form method="get" class="form-inline" id="filter-form">
+                <div class="form-group mr-2">
+                    <label style="color: #333; padding: 5px 10px; margin: 0 5px; background-color: #ffbc0e; border-radius: 5px; font-weight: bold;" class="ingresar-button">Buscar:</label>
+                    <input type="text" name="b" class="form-control" placeholder="Buscar" value="{{ request.GET.b }}">
+                </div>
+                <div class="form-group mr-2">
+                  <label style="color: #333; padding: 5px 10px; margin: 0 5px; background-color: #ffbc0e; border-radius: 5px; font-weight: bold;" for="filtro" class="ingresar-button">Filtro:</label>
+                  <select name="filtro" class="form-control filtro-select" id="filtro-select">
+                    <option value="">Todos</option>
+                    <option value="habilitados"{% if request.GET.filtro == "habilitados" %} selected{% endif %}>Estudiantes Habilitados</option>
+                    <option value="deshabilitados"{% if request.GET.filtro == "deshabilitados" %} selected{% endif %}>Estudiantes Deshabilitados</option>
+                  </select>
+                </div>
+                &nbsp;
+            </form>
+            &nbsp;
             <table>
                 <thead>
                     <tr>
-                        <th>Cédula</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Teléfono</th>
-                        <th>Fecha de ingreso al sistema</th>
-                        <th>Correo electrónico</th>
                         <th>Editar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for estudiante in estudiantes %}
-                        <tr>
-                            <td>{{estudiante.id}}</td>
-                            <td>{{estudiante.nombre}}</td>
-                            <td>{{estudiante.direccion}}</td>
-                            <td>{{estudiante.tfno}}</td>
-                            <td>{{estudiante.fecha}}</td>
-                            <td>{{estudiante.email}}</td>
-                            <td>IconoEditar</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <div id="Visualizar" class="table-responsive" style="display: none;">
-            <table>
-                <thead>
-                    <tr>
                         <th>Cédula</th>
                         <th>Nombre</th>
                         <th>Dirección</th>
@@ -97,33 +95,89 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for estudiante in estudiantes %}
+                    {% for estudiante in pagina_obj %}
                         <tr>
-                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.id}}</td>
-                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.nombre}}</td>
-                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.direccion}}</td>
-                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.tfno}}</td>
-                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.fecha}}</td>
-                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.email}}</td>
-                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.devoluciones}}</td>
-                            <td style="text-align: center; border-bottom: 1px solid white;">{{estudiante.estatus}}</td>
-                            <td style="text-align: center; border-bottom: 1px solid white;">
-                                {% if estudiante.estatus == 'Habilitado' %}
-                                    <form action="{% url 'CambiarEstatus' estudiante.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <button type="submit">Deshabilitar</button>
-                                    </form>
-                                {% else %}
-                                    <form action="{% url 'CambiarEstatus' estudiante.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <button type="submit">Habilitar</button>
-                                    </form>
-                                {% endif %}
+                            <td>
+                                <form action="{% url 'EditarEstudiante' estudiante.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" >
+                                        <img src="{% static 'Biblioteca/imgprojts/edit.png' %}" alt="Editar Elemento" style="height: 25px;">
+                                    </button>
+                                </form>
+                            </td>
+                            <td>{{estudiante.id}}</td>
+                            <td>{{estudiante.nombre}}</td>
+                            <td>{{estudiante.direccion}}</td>
+                            <td>{{estudiante.tfno}}</td>
+                            <td>{{estudiante.fecha}}</td>
+                            <td>{{estudiante.email}}</td>
+                            <td>{{estudiante.devoluciones}}</td>
+                            <td>{{estudiante.estatus}}</td>
+                            <td>
+                                <form action="{% url 'CambiarEstatus' estudiante.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit">
+                                        {% if estudiante.estatus == 'Habilitado' %}
+                                            Deshabilitar
+                                        {% else %}
+                                            Habilitar
+                                        {% endif %}
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if pagina_obj.has_previous %}
+                        <a href="?page=1{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}{% if request.GET.b %}&b={{ request.GET.b }}{% endif %}">&laquo; Primera</a>
+                        <a href="?page={{ pagina_obj.previous_page_number }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}{% if request.GET.b %}&b={{ request.GET.b }}{% endif %}">Anterior</a>
+                    {% endif %}
+            
+                    {% for i in pagina_obj.paginator.page_range %}
+                        {% if pagina_obj.number == i %}
+                            <span class="current-page">{{ i }} de {{ pagina_obj.paginator.num_pages }}</span>
+                        {% endif %}
+                    {% endfor %}
+            
+                    {% if pagina_obj.has_next %}
+                        <a href="?page={{ pagina_obj.next_page_number }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}{% if request.GET.b %}&b={{ request.GET.b }}{% endif %}">Siguiente</a>
+                        <a href="?page={{ pagina_obj.paginator.num_pages }}{% if request.GET.filtro %}&filtro={{ request.GET.filtro }}{% endif %}{% if request.GET.b %}&b={{ request.GET.b }}{% endif %}">Última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Obtener el formulario y el campo selectivo
+                const filterForm = document.getElementById('filter-form');
+                const filtroSelect = document.getElementById('filtro-select');
+        
+                // Agregar evento de cambio al campo selectivo
+                filtroSelect.addEventListener('change', function () {
+                    // Enviar automáticamente el formulario cuando se seleccione una opción
+                    filterForm.submit();
+                });
+            });
+        </script> 
+        <script>
+            // Obtener el formulario y el campo de búsqueda
+            const filterForm = document.getElementById('filter-form');
+            const searchInput = filterForm.querySelector('[name="b"]');
+        
+            // Restaurar el término de búsqueda desde el LocalStorage (si existe)
+            const storedSearch = localStorage.getItem('searchTerm');
+            if (storedSearch) {
+                searchInput.value = storedSearch;
+            }
+        
+            // Escuchar el evento de envío del formulario para almacenar el término de búsqueda
+            filterForm.addEventListener('submit', function (event) {
+                const searchTerm = searchInput.value.trim();
+                localStorage.setItem('searchTerm', searchTerm);
+            });
+        </script>
     &nbsp;
 {% endblock %} 

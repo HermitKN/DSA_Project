@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from GenerarPrestamo.models import Prestamo
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from django.utils.dateparse import parse_date
-from datetime import datetime, timedelta
 # Create your views here.
 
 def notas_prestamo(request):

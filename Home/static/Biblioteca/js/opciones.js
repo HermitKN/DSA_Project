@@ -37,6 +37,13 @@ function MostrarEliminar(){
     document.getElementById("BotonEditar").style.backgroundColor = "white"
 }
 
+function MostrarVisualizarE(){
+    document.getElementById("Ingresar").style.display = "none"
+    document.getElementById("BotonIngresar").style.backgroundColor = "white"
+    document.getElementById("Visualizar").style.display = "block"
+    document.getElementById("BotonVisualizar").style.backgroundColor = "#40A6FF"
+}
+
 function MostrarEditar(){
     document.getElementById("Ingresar").style.display = "none"
     document.getElementById("BotonIngresar").style.backgroundColor = "white"
