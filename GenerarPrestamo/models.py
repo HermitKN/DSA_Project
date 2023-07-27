@@ -17,7 +17,7 @@ class Prestamo(models.Model):
     id = models.AutoField(primary_key=True, verbose_name="Nota de Prestamo")
     estudiante=models.ForeignKey(Estudiante, on_delete=models.CASCADE, verbose_name="Estudiante")
     libro=models.ForeignKey(Libro, on_delete=models.CASCADE, verbose_name="Libro")
-    tipo = models.CharField(max_length=7, choices=TIPO_CHOICES, verbose_name="Tipo de Prestamo")
+    tipo = models.CharField(max_length=7, choices=TIPO_CHOICES, verbose_name="Tipo de Préstamo")
     cantidad = models.PositiveIntegerField(validators=[MinValueValidator(1)],verbose_name="Cantidad del libro")
     limite=models.DateField(editable=False, verbose_name="Fecha límite de Devolución")
     fecha=models.DateTimeField(auto_now_add=True)
